@@ -27,7 +27,7 @@
 
 #outline()
 
-// #include "01_set.typ"
+#include "01_tuple.typ"
 // #include "02_number.typ"
 // #include "03_supinf.typ"
 // #include "04_limit.typ"
