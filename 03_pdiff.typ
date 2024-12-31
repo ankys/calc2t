@@ -332,103 +332,130 @@ $
 ]
 
 == 高階の偏微分
-<高階の偏微分>
+
 $N$変数関数$f$の$x_i$偏微分導関数$f_(x_i)$はやはり$N$変数関数なので引き続き$x_j$での偏微分導関数を（存在すれば）考えることができる。
 
-#block[
+#definition([高階偏微分])[
 $RR^N$の開部分集合$X$上の関数$f$が変数$x_i$に対して偏微分可能で導関数$f_(x_i)$が各変数$x_j$で偏微分可能である時、$f$は$X$上二回偏微分可能であるといい、偏微分導関数
-\$\$f\_{x\_i x\_j}, \\quad \\pdv{x\_j}(\\pdv{f}{x\_i}) = \\pdv{f}{x\_j}{x\_i}\$\$
+$
+f_(x_i x_j) = pdv(, x_j)(pdv(f, x_i)) = pdv(f, x_j, x_i)
+$
 を$f$の_二階偏微分導関数_という。
 同様にして、$i_1, dots, i_n = 1, dots, N$
-($n = 1, 2, 3, dots$)に対して偏微分導関数$f_(x_(i_1) dots x_(i_n))$を$f$の$n$階偏微分導関数という。
+($n = 1, 2, 3, dots$)に対して偏微分導関数$f_(x_(i_1) dots x_(i_n))$を$f$の_$n$階偏微分導関数_という。
 すべての$n$階偏微分導関数が連続の時、$f$は$X$上で_$C^n$級_であるという。
 さらに$f$が$X$上で任意の$n = 1, 2, 3, dots$で$C^n$級である時、$f$は_$C^oo$級_であるという。
-
 ]
-#block[
+
+#remark[
 $C^1$級であることは連続微分可能であることと同値である。
-
 ]
+
 この定義によると$N$変数関数の$n$階偏微分導関数は$N^n$個あるが、実際にはいくつかは等しい。
 
-#block[
+#theorem([シュワルツの定理])[
 $f(x, y)$を二変数関数として$(a, b)$を定義域の内点とする。
-ここで$(a, b)$の近傍において$f_x$,
+ここで$(a, b)$の近傍において$f_x$, $f_y$, $f_(x y)$が存在して$f_(x y)$が$(a, b)$で連続ならば、$f_(y x)$も存在して
 $
-f_y$,
-$f_(x y)$が存在して$f_(x y)$が$(a, b)$で連続ならば、$f_(y x)$も存在して
-$ f_(y x) (a, b) = f_(x y) (a, b)
+f_(y x) (a, b) = f_(x y) (a, b)
 $
 が成り立つ。
-
 ]
-#block[
 
+#proof[
+$h, k eq.not 0$として、平均値の定理を二回用いると
 $
-h, k eq.not 0$として、平均値の定理を二回用いると
-$ f(a+h, b+k)-f(a+h, b)-f(a, b+k)+f(a, b) = h (f_x (a+alpha h, b+k)-f_x (a+alpha h, b)) = h k f_(x y) (a+alpha h, b+beta k)
+f(a+h, b+k)-f(a+h, b)-f(a, b+k)+f(a, b)
+= h (f_x (a+alpha h, b+k)-f_x (a+alpha h, b))
+= h k f_(x y) (a+alpha h, b+beta k)
 $
-
 となる$0 <= alpha, beta <= 1$が存在することがわかる。
 ここで$f_(x y)$は連続より、$omega$を連続性の度合いとして
-\$\$\\abs{f(a+h, b+k)-f(a+h, b)-f(a, b+k)+f(a, b)-h k f\_{x y}(a, b)}
-\\le \\abs{h k}\\omega(\\sqrt{\\alpha^2 h^2+\\beta^2 k^2})
-\\le \\abs{h k}\\omega(\\sqrt{h^2+k^2})\$\$ となることがわかる。
+$
+abs(f(a+h, b+k)-f(a+h, b)-f(a, b+k)+f(a, b)-h k f_(x y) (a, b))
+<= abs(h k) omega(sqrt(alpha^2 h^2+beta^2 k^2))
+<= abs(h k) omega(sqrt(h^2+k^2))
+$
+となることがわかる。
 あとは先に$k$で割って極限を取ってから次いで$h$で割って極限を取ることで、
-\$\$\\abs{f\_y(a+h, b)-f\_y(a, b)-h f\_{x y}(a, b)} \\le \\abs{h}\\omega(\\abs{h}),\$\$
-\$\$\\abs{\\lim\_{h -> 0}\\frac{f\_y(a+h, b)-f\_y(a, b)}{h}-f\_{x y}(a, b)} \\le 0.\$\$
+$
+abs(f_y (a+h, b)-f_y (a, b)-h f_(x y) (a, b))
+<= abs(h) omega(abs(h)),
+$
+$
+abs(lim_(h -> 0) (f_y (a+h, b)-f_y (a, b)-h f_(x y) (a, b)))
+<= 0.
+$
 したがって$f_(y x) (a, b)$が存在して、その値は$f_(x y) (a, b)$に一致する。
-
 ]
+
 この定理は$3$変数以上の多変数関数に対しても任意の二つの変数に対して適用することで偏微分の順序交換をすることができ、
 $3$回以上微分可能な関数に対しても定理を繰り返し用いることで任意の偏微分の順序交換をすることができる。
 例えば$C^3$級の$N$変数関数に対して、
-$ f_(x_i x_j x_k) = f_(x_k x_j x_i)
+$
+f_(x_i x_j x_k) = f_(x_k x_j x_i)
 $
 などが成り立つ。
 
 == ヤコビ行列とヘッセ行列
-<ヤコビ行列とヘッセ行列>
+
 $RR^M$値関数に対して勾配ベクトルを並べて得られる行列をヤコビ行列という。
 
-#block[
-$N$次元点集合上の$M$個の実数値関数$f^1 (x) = f^1 (x_1, dots, x_N), dots, f^M (x) = f^M (x_1, dots, x_N)$が内点$x = a$で偏微分可能な時、$RR^M$値関数$F (x) = (f^1 (x), dots, f^M (x))$は$x = a$で偏微分可能といい、
+#definition([ヤコビ行列])[
+$N$次元点集合上の$M$個の実数値関数$f^1 (x) = f^1 (x_1, dots, x_N), dots, f^M (x) = f^M (x_1, dots, x_N)$が内点$x = a$で偏微分可能な時、$RR^M$値関数$F(x) = (f^1 (x), dots, f^M (x))$は$x = a$で偏微分可能といい、
 $N times M$型行列
-\$\$J F(a) = \\gradient F(a) = \\mqty(f^1\_{x\_1}(a) & \\cdots & f^1\_{x\_N}(a) \\\\ \\vdots & \\ddots & \\vdots \\\\ f^M{x\_1}(a) & \\cdots & f^M\_{x\_N}(a))\$\$
-を$F (x)$の$x = a$での_ヤコビ行列_という。
+$
+J F(a)
+= gradient F(a)
+= mat(f^1_(x_1) (a), dots.c, f^1_(x_N) (a); dots.v, dots.down, dots.v; f^M_(x_1) (a), dots.c, f^M_(x_N) (a))
+$
+を$F(x)$の$x = a$での_ヤコビ行列_という。
 
 特に$M = N$の場合はヤコビ行列は正方行列になり、
 行列式$det J F (a)$が定義されて_ヤコビ行列式_あるいは_ヤコビアン_という。
-
 ]
-#block[
-$A$を$M times N$型行列として$N$次元ベクトル\$\\vb\*{x}\$を$M$次元ベクトル\$A\\vb\*{x}\$に移す線形写像\$F(\\vb\*{x}) = A\\vb\*{x}\$を考えると、
-ヤコビ行列は \$\$J F(\\vb\*{x}) = A\$\$
-となる（ベクトル\$\\vb\*{x}\$によらない）。
-特に$A$が$N$次正方行列の場合の一次変換（線形変換）\$F(\\vb\*{x}) = A\\vb\*{x}\$のヤコビアンは
-\$\$\\det J F(\\vb\*{x}) = \\det A\$\$ である。
 
+#example([線形写像])[
+$A$を$M times N$型行列として$N$次元ベクトル$bold(x)$を$M$次元ベクトル$A bold(x)$に移す線形写像$F(bold(x)) = A bold(x)$を考えると、
+ヤコビ行列は
+$
+J F(bold(x)) = A
+$
+となる（ベクトル$bold(x)$によらない）。
+特に$A$が$N$次正方行列の場合の一次変換（線形変換）$F(bold(x)) = A bold(x)$のヤコビアンは
+$
+det J F(bold(x)) = det A
+$
+である。
 ]
-#block[
+
+#example([極座標変換])[
 極座標変換$x = r cos theta, y = r sin theta$のヤコビアンを計算すると、
-\$\$\\det\\mqty(x\_r & x\_\\theta \\\\ y\_r & y\_\\theta)
-= \\det\\mqty(\\cos\\theta & -r\\sin\\theta \\\\ \\sin\\theta & r\\cos\\theta)
-= r\\cos^2\\theta+r\\sin^2\\theta
-= r\$\$ となる。
-
+$
+det mat(x_r, x_theta; y_r, y_theta)
+= mat(delim: "|", cos theta, -r sin theta; sin theta, r cos theta)
+= r cos^2 theta+r sin^2 theta
+= r
+$
+となる。
 ]
+
 一回偏微分を並べて勾配ベクトルが得られたように二回偏微分を並べてヘッセ行列と呼ばれるものが定義される。
 
-#block[
+#definition([ヘッセ行列])[
 $N$次元点集合上の実数値関数$f(x) = f(x_1, dots, x_N)$が内点$x = a$の近傍で二回偏微分可能な時、$N$次正方行列
-\$\$H f(a) = \\gradient^2 f(a) = \\mqty(f\_{x\_1 x\_1}(a) & \\cdots & f\_{x\_1 x\_N}(a) \\\\ \\vdots & \\ddots & \\vdots \\\\ f\_{x\_N x\_1}(a) & \\cdots & f\_{x\_N x\_N}(a))\$\$
+$
+H f(a)
+= gradient^2 f(a)
+= mat(f_(x_1 x_1) (a), dots.c, f_(x_1 x_N) (a); dots.v, dots.down, dots.v; f_(x_N x_1) (a), dots.c, f_(x_N x_N) (a))
+$
 を$f(x)$の$x = a$での_ヘッセ行列_あるいは_ヘシアン_という。
-
 ]
-#block[
+
+#remark[
 $f$が$C^2$級関数の時、シュワルツの定理よりヘッセ行列は実対称行列である。
-
 ]
+
 == 極値問題
 <極値問題>
 点集合上の関数$f$がどのような点で最大または最小になるかという極値問題は様々な場面で現れる重要な問題である。
@@ -472,10 +499,10 @@ $
 
 一般には$N$次実対称行列$A$と$N$次元実ベクトル\$\\vb\*{b}\$と実数$c$に対して、
 二次式
-\$\$f(\\vb\*{x}) = \\vb\*{x}\\cdot A\\vb\*{x}+\\vb\*{b}\\cdot \\vb\*{x}+c\$\$
-を考えると \$\$\\gradient f(\\vb\*{x}) = 2 A\\vb\*{x}+\\vb\*{b}\$\$
+\$\$f(bold(x)) = bold(x)\\cdot Abold(x)+\\vb\*{b}\\cdot bold(x)+c\$\$
+を考えると \$\$\\gradient f(bold(x)) = 2 Abold(x)+\\vb\*{b}\$\$
 である。 よって、$det A eq.not 0$の時は停留点は
-\$\$\\vb\*{x} = -\\frac{1}{2}A^{-1}\\vb\*{b}\$\$ と求まる。
+\$\$bold(x) = -\\frac{1}{2}A^{-1}\\vb\*{b}\$\$ と求まる。
 
 ]
 停留点であることは極大や極小であることの必要条件であるが、逆は一般には成り立たない。
