@@ -1,4 +1,9 @@
 
+#import "deps/theorem.typ": thmrules, theorem, lemma, proposition, corollary, definition, example, remark, proof
+#show: thmrules.with()
+
+#import "@preview/physica:0.9.4": dd, dv, pdv, eval
+
 = 偏微分
 
 == 偏微分
@@ -292,7 +297,7 @@ $
 $
 したがって、$omega$を$gradient f$の連続性の度合いとして、
 $
-abs(f(x_1, dots, x_i, dots, x_N)-f(x_1, dots, a_i, dots, x_N)-f_(x_i) (a_1, dots, a_i, dots, a_N)(x_i-a_i)) \
+&abs(f(x_1, dots, x_i, dots, x_N)-f(x_1, dots, a_i, dots, x_N)-f_(x_i) (a_1, dots, a_i, dots, a_N)(x_i-a_i)) \
 &quad <= omega(norm((x_1, dots, theta a_i+(1-theta)x_i, dots, x_N)-(a_1, dots, a_i, dots, a_N)))abs(x_i-a_i) \
 &quad <= omega(norm(x-a)+abs(theta a_i+(1-theta)x_i-a_i))abs(x_i-a_i)
 $
@@ -313,7 +318,7 @@ $
 $
 &abs(f(x)-f(a)-gradient f(a) dot (x-a)) \
 &quad <= sum_(i = 1)^N abs(f(a_1, dots, x_i, dots, x_N)-f(a_1, dots, a_i, dots, x_N)-f_(x_i) (a_1, dots, a_i, dots, a_N)(x_i-a_i)) \
-&<= N omega(2 norm(x-a))norm(x-a)
+&quad <= N omega(2 norm(x-a))norm(x-a)
 $
 よって、$f$は全微分可能である。
 ]
@@ -574,7 +579,7 @@ $
 ここで$f_y (a, b) eq.not 0$の時、ある半径$r, R > 0$が存在して、各$x in B_r (a)$に対して$y in B_R (b)$の範囲で$f(x, y) = 0$を満たす$y$が一意に存在しそれを$g(x)$とおくと$g$は$C^1$級であり、
 $
 g'(x) = -frac(f_x (x, g(x)), f_y (x, g(x)))
-$
+$ <e_imdiff>
 が成り立つ。
 ]
 
