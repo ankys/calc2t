@@ -204,39 +204,42 @@ $
 ]
 
 == 連続関数の可積分性
-<連続関数の可積分性>
+
 一次元の定積分において有界閉区間上の連続関数は積分可能だったように重積分でも有界閉矩形上の連続関数は積分可能だが、
 これを有界閉集合に広げようとすると面積確定のもとで拡張される。
 
-#block[
-<t:contint> 面積確定有界閉集合上の連続関数は積分可能である。
+#theorem([連続関数の可積分性])[
+面積確定有界閉集合上の連続関数は積分可能である。
+] <t_contint>
 
-]
-#block[
-
+#proof[
 有界閉集合$X$上の連続関数$f$は有界かつ一様連続であることに注意する。
-分割$P$の小矩形$C in P$に対して$partial X$と交わりを持つようなもの全体を$Q$と、$X$に包含されるもの全体を$P^(‾)$とおくと、
-\$\$\\sum\_{C \\in P}(\\sup\_C f 1\_X-\\inf\_C f 1\_X)\\area(C)
-\\le \\sum\_{C \\in Q}M\\area{C}+\\sum\_{C \\in \\bar{P}}(\\sup\_C f-\\inf\_C f)\\area(C)
-\\le M\\sum\_{C \\in P}\\sup 1\_{\\partial X}\\area(C)+\\omega(\\abs{P})\\area(X)\$\$
+分割$P$の小矩形$C in P$に対して$partial X$と交わりを持つようなもの全体を$Q$と、$X$に包含されるもの全体を$macron(P)$とおくと、
+$
+sum_(C in P) (sup_C f 1_X-inf_C f 1_X) area(C)
+<= sum_(C in Q) M area(C)+sum_(C in macron(P)) (sup_C f-inf_C f) area(C)
+<= M sum_(C in P) sup 1_(partial X) area(C)+omega(abs(P)) area(X)
+$
 が成り立つ。
 ここで面積確定有界閉集合$X$の境界$partial X$は面積零集合なので、分割$P$を細かくするとこれは$0$に収束するので、
 $f$は$X$上積分可能である。
-
 ]
+
 この定理の証明でも使っている通り面積確定であるための条件は境界が面積零であることだが、
 ではどのような場合に境界が面積零になるだろうか。
 
 基本的に次数が低いと考えられる集合は面積零である。
 
-#block[
+#proposition[
 $M = 1, 2, 3, dots, N-1$として$D$を$M$次元面積確定集合とすると$N$次元点集合
-\$\$X =  { (x, 0) \\in \\mathbb{R}^N = \\mathbb{R}^M\\times\\mathbb{R}^{N-M} \\mid x \\in D }\$\$
+$
+X = { (x, 0) in RR^N = RR^M times RR^(N-M) mid(|) x in D }
+$
 は面積零である。
-
 ]
+
 なぜなら有界閉矩形は面積確定なのでその境界と境界の部分集合とみなすことのできる$X$は面積零である。
-または次節の累次積分の議論を使えば系@t:repvolの系としても示すことができる。
+または次節の累次積分の議論を使えば@t_repvol の系としても示すことができる。
 
 == 累次積分
 <累次積分>
@@ -393,13 +396,13 @@ $ I = integral_0^1 integral_0^(1-x) x y ⅆ y dd(x) = integral_0^1 1 / 2 x (1-x)
 
 ]
 #block[
-単位球\$B =  { (x, y, z) \\in \\mathbb{R}^3 \\mid x^2+y^2+z^2 \\le 1 }\$の体積を考える。
+単位球\$B =  { (x, y, z) \\in  RR^3 \\mid x^2+y^2+z^2 \\le 1 }\$の体積を考える。
 これは縦線集合あるいは横線集合として \$\$\\begin{aligned}
 B
-&=  { (x, y, z) \\in \\mathbb{R}^3 \\mid x^2+y^2 \\le 1, -\\sqrt{1-x^2-y^2} \\le z \\le +\\sqrt{1-x^2-y^2} } \\\\
-&=  { (x, y, z) \\in \\mathbb{R}^3 \\mid -1 \\le z \\le +1, x^2+y^2 \\le 1-z^2 }
+&=  { (x, y, z) \\in  RR^3 \\mid x^2+y^2 \\le 1, -\\sqrt{1-x^2-y^2} \\le z \\le +\\sqrt{1-x^2-y^2} } \\\\
+&=  { (x, y, z) \\in  RR^3 \\mid -1 \\le z \\le +1, x^2+y^2 \\le 1-z^2 }
 \\end{aligned}\$\$ として表される。
-そのため半径$r$の円板を\$D(r) =  { (x, y) \\in \\mathbb{R}^2 \\mid x^2+y^2 \\le r^2 }\$として、
+そのため半径$r$の円板を\$D(r) =  { (x, y) \\in  RR^2 \\mid x^2+y^2 \\le r^2 }\$として、
 \$\$\\vol(B)
 = \\iint\_{D(1)} 2\\sqrt{1-x^2-y^2}\\dd{(x, y)}
 = \\int\_{-1}^{+1} \\area(D(\\sqrt{1-z^2}))\\dd{z}\$\$
