@@ -264,64 +264,73 @@ $
 ]
 
 == 連続微分可能性
-<連続微分可能性>
-例@t:pdiff_non_contで見たように、偏微分可能と連続とは分離された概念であるが、連続（偏）微分可能ならば（全）微分可能なので連続性も従うという事実が知られている。
 
-#block[
+@t_pdiff_non_cont で見たように、偏微分可能と連続とは分離された概念であるが、連続（偏）微分可能ならば（全）微分可能なので連続性も従うという事実が知られている。
+
+#definition([連続微分可能性])[
 $RR^N$の開部分集合$X$上の実数値関数$f$が各変数$x_i$に対して偏微分可能で導関数$gradient f$が$X$上の連続関数である時、$f$は$X$上_連続微分可能_であるという。
-
 ]
-#block[
+
+#remark[
 $gradient f$が連続関数のところは各偏微分導関数$f_(x_i)$が連続関数と読みかえられる。
-
 ]
-#block[
+
+#proposition([連続微分可能ならば全微分可能])[
 $RR^N$の開部分集合$X$上の実数値関数$f$が連続微分可能ならば、$f$は$X$上の各点で全微分可能である。
-
 ]
-#block[
-_Proof.]
+
+#proof[
 証明は点$a = (a_1, dots, a_N) in X$とその近傍の点$x = (x_1, dots, x_N) in X$について、$x$から$a$へ$x_1, dots, x_N$軸に沿って近づけるという方法で行う。
 そのためにまず各$x_i$に対して次の値を評価する。
-\$\$\\abs{f(x\_1, \\cdots, x\_i, \\cdots, x\_N)-f(x\_1, \\cdots, a\_i, \\cdots, x\_N)-f\_{x\_i}(a\_1, \\cdots, a\_i, \\cdots, a\_N)(x\_i-a\_i)}\$\$
-ここで$x ->.bar f(x_1, dots, x, dots, x_N)$に対する平均値の定理より$0 lt.eq theta lt.eq 1$が存在して、
-\$\$\\begin{aligned}
-&\\abs{f(x\_1, \\cdots, x\_i, \\cdots, x\_N)-f(x\_1, \\cdots, a\_i, \\cdots, x\_N)-f\_{x\_i}(a\_1, \\cdots, a\_i, \\cdots, a\_N)(x\_i-a\_i)} \\\\
-&\\quad \\le \\abs{(f\_{x\_i}(x\_1, \\cdots, \\theta a\_i+(1-\\theta)x\_i, \\cdots, x\_N)-f\_{x\_i}(a\_1, \\cdots, a\_i, \\cdots, a\_N))(x\_i-a\_i)}
-\\end{aligned}\$\$
+$
+abs(f(x_1, dots, x_i, dots, x_N)-f(x_1, dots, a_i, dots, x_N)-f_(x_i) (a_1, dots, a_i, dots, a_N)(x_i-a_i))
+$
+ここで$x |-> f(x_1, dots, x, dots, x_N)$に対する平均値の定理より$0 <= theta <= 1$が存在して、
+$
+&abs(f(x_1, dots, x_i, dots, x_N)-f(x_1, dots, a_i, dots, x_N)-f_(x_i) (a_1, dots, a_i, dots, a_N)(x_i-a_i)) \
+&quad <= abs(f_(x_i) (x_1, dots, theta a_i+(1-theta)x_i, dots, x_N)-f_(x_i) (a_1, dots, a_i, dots, a_N))(x_i-a_i)).
+$
 したがって、$omega$を$gradient f$の連続性の度合いとして、
-\$\$\\begin{aligned}
-&\\abs{f(x\_1, \\cdots, x\_i, \\cdots, x\_N)-f(x\_1, \\cdots, a\_i, \\cdots, x\_N)-f\_{x\_i}(a\_1, \\cdots, a\_i, \\cdots, a\_N)(x\_i-a\_i)} \\\\
-&\\quad \\le \\omega(\\norm{(x\_1, \\cdots, \\theta a\_i+(1-\\theta)x\_i, \\cdots, x\_N)-(a\_1, \\cdots, a\_i, \\cdots, a\_N)})\\abs{x\_i-a\_i} \\\\
-&\\quad \\le \\omega(\\norm{x-a}+\\abs{(\\theta a\_i+(1-\\theta)x\_i)-a\_i})\\abs{x\_i-a\_i} \\\\
-\\end{aligned}\$\$ ここで$0 lt.eq theta lt.eq 1$なので、
-\$\$\\abs{(\\theta a\_i+(1-\\theta)x\_i)-a\_i} = (1-\\theta)\\abs{x\_i-a\_i} \\le \\abs{x\_i-a\_i}\$\$
-よって、 \$\$\\begin{aligned}
-&\\abs{f(x\_1, \\cdots, x\_i, \\cdots, x\_N)-f(x\_1, \\cdots, a\_i, \\cdots, x\_N)-f\_{x\_i}(a\_1, \\cdots, a\_i, \\cdots, a\_N)(x\_i-a\_i)} \\\\
-&\\quad \\le \\omega(2\\norm{x-a})\\abs{x\_i-a\_i}
-\\le \\omega(2\\norm{x-a})\\norm{x-a}
-\\end{aligned}\$\$ である。 あとはこれを用いることで、
-\$\$\\begin{aligned}
-&\\abs{f(x)-f(a)-\\gradient f(a)\\cdot(x-a)} \\\\
-&\\quad \\le \\sum\_{i = 1}^N \\abs{f(a\_1, \\cdots, x\_i, \\cdots, x\_N)-f(a\_1, \\cdots, a\_i, \\cdots, x\_N)-f\_{x\_i}(a\_1, \\cdots, a\_i, \\cdots, a\_N)(x\_i-a\_i)} \\\\
-&\\quad \\le N\\omega(2\\norm{x-a})\\norm{x-a}.
-\\end{aligned}\$\$ よって、$f$は全微分可能である。
-
+$
+abs(f(x_1, dots, x_i, dots, x_N)-f(x_1, dots, a_i, dots, x_N)-f_(x_i) (a_1, dots, a_i, dots, a_N)(x_i-a_i)) \
+&quad <= omega(norm((x_1, dots, theta a_i+(1-theta)x_i, dots, x_N)-(a_1, dots, a_i, dots, a_N)))abs(x_i-a_i) \
+&quad <= omega(norm(x-a)+abs(theta a_i+(1-theta)x_i-a_i))abs(x_i-a_i)
+$
+ここで$0 <= theta <= 1$なので、
+$
+abs(theta a_i+(1-theta)x_i-a_i)
+= (1-theta)abs(x_i-a_i)
+<= abs(x_i-a_i)
+$
+よって、
+$
+&abs(f(x_1, dots, x_i, dots, x_N)-f(x_1, dots, a_i, dots, x_N)-f_(x_i) (a_1, dots, a_i, dots, a_N)(x_i-a_i)) \
+&quad <= omega(norm(x-a)+abs(x_i-a_i))abs(x_i-a_i)
+<= omega(2 norm(x-a))norm(x-a)
+$
+である。
+あとはこれを用いることで、
+$
+&abs(f(x)-f(a)-gradient f(a) dot (x-a)) \
+&quad <= sum_(i = 1)^N abs(f(a_1, dots, x_i, dots, x_N)-f(a_1, dots, a_i, dots, x_N)-f_(x_i) (a_1, dots, a_i, dots, a_N)(x_i-a_i)) \
+&<= N omega(2 norm(x-a))norm(x-a)
+$
+よって、$f$は全微分可能である。
 ]
-#block[
+
+#theorem[
 弧状連結な開集合$X$上の関数$f$がすべての内点$x$で全微分可能であり$gradient f(x) = 0$を満たすならば、$f$は定数関数である。
-
 ]
-#block[
-_Proof.]
-補題@t_pcurvより$X$の任意の二点$x, y$は$x_1, dots, x_N$軸に並行ないくつかの線分で結ばれて、それぞれの線分で偏微分が$0$なので、$f(x) = f(y)$が成り立つ。
 
+#proof[
+@t_pcurv より$X$の任意の二点$x, y$は$x_1, dots, x_N$軸に並行ないくつかの線分で結ばれて、それぞれの線分で偏微分が$0$なので、$f(x) = f(y)$が成り立つ。
 ]
-#block[
+
+#remark[
 この定理の偏微分版つまり$f_(x_i) (x) = 0$ならば$f(x)$は$x_i$について定数関数は一般には成り立たない。
 反例としてはコの字形の領域により与えられる。
-
 ]
+
 == 高階の偏微分
 <高階の偏微分>
 $N$変数関数$f$の$x_i$偏微分導関数$f_(x_i)$はやはり$N$変数関数なので引き続き$x_j$での偏微分導関数を（存在すれば）考えることができる。
@@ -354,13 +363,13 @@ $
 
 ]
 #block[
-_Proof.]
+
 $
 h, k eq.not 0$として、平均値の定理を二回用いると
 $ f(a+h, b+k)-f(a+h, b)-f(a, b+k)+f(a, b) = h (f_x (a+alpha h, b+k)-f_x (a+alpha h, b)) = h k f_(x y) (a+alpha h, b+beta k)
 $
 
-となる$0 lt.eq alpha, beta lt.eq 1$が存在することがわかる。
+となる$0 <= alpha, beta <= 1$が存在することがわかる。
 ここで$f_(x y)$は連続より、$omega$を連続性の度合いとして
 \$\$\\abs{f(a+h, b+k)-f(a+h, b)-f(a, b+k)+f(a, b)-h k f\_{x y}(a, b)}
 \\le \\abs{h k}\\omega(\\sqrt{\\alpha^2 h^2+\\beta^2 k^2})
@@ -517,7 +526,7 @@ $
 
 ]
 #block[
-_Proof.]
+
 $f_y (a, b) < 0$の場合も同様なので、$f_y (a, b) > 0$の場合だけ証明する。
 仮定より$f_y$は連続関数なので、半径$r_1, R_2 > 0$が存在して$B_(r_1) (a) times B_(R_1) (b)$上の全ての$(x, y)$で
 $ f_y (x, y) gt.eq 1 / 2 f_y (a, b) > 0
@@ -540,7 +549,7 @@ $k = g(x+h)-g(x)$とおくと、テイラーの定理より
 $ f(x+h, y+k) = f(x, y)+f_x (x+alpha h, y+beta k) h+f_y (x+alpha h, y+beta k) k
 $
 
-となる$0 lt.eq alpha, beta < 1$が存在する。
+となる$0 <= alpha, beta < 1$が存在する。
 ここで$y, k$の定め方から$f(x+h, y+k) = f(x, y) = 0$であるから、
 $ k / h = frac(g(x+h)-g(x), h) =-frac(f_x (x+alpha h, y+beta k), f_y (x+alpha h, y+beta k))
 $
@@ -560,7 +569,7 @@ $f$が$C^n$級の時、陰関数$g$も$C^n$級である。
 
 ]
 #block[
-_Proof.]
+
 $f$が$C^2$級の時、$f_x$と$f_y$は$C^1$級で定理より$g$も$C^1$級なので#link(<e:imdiff>)[\[e:imdiff\]_の両辺は$C^1$級であり、$g$は$C^2$級である。
 この議論を繰り返し用いることで$f$が$C^n$級ならば$g$も$C^n$級であることがわかる。
 
@@ -594,7 +603,7 @@ $
 証明は陰関数定理を用いて一変数関数に帰着させる。
 
 #block[
-_Proof.]
+
 $gradient g(a, b) eq.not 0$つまり$g_x (a, b) eq.not 0$または$g_y (a, b) eq.not 0$の時を考えて、変数$x, y$の対称性より$g_y (a, b) eq.not 0$の場合を考える。
 このとき陰関数定理が使えて、点$(a, b)$の近くでは$g(x, y) = 0$を満たす点$(x, y)$は$y = y (x)$と解けて
 $ y' (x) =-frac(g_x (x, y (x)), g_y (x, y (x)))
