@@ -643,24 +643,23 @@ $n -> oo$とすると$h -> 0$であり$omega (h) -> 0$より等式@e_cvcpt が�
 ]
 
 == 広義重積分
-<広義重積分>
+
 $N$次元有界集合$D$上の有界関数$f$で定義された重積分$integral_D f(x) dd(x)$であるが、
-全体集合$bb(R)^N$やその開集合などもっと一般の集合$X$に対してその上の有界とは限らない関数の重積分を定義したいことがある。
+全体集合$RR^N$やその開集合などもっと一般の集合$X$に対してその上の有界とは限らない関数の重積分を定義したいことがある。
 このような積分を広義重積分と呼ぶ。
 
 本テキストで紹介する広義重積分は積分領域を面積確定有界閉集合で内側から近似するという方法で定義する。
 
-#block[
+#definition([積分領域の近似列])[
 点集合$X$に対して次を満たす面積確定有界閉集合の列$(D_n)$を$X$の_近似列_という。
 
 - 各自然数$n$に対して$D_n subset X$と$D_(n+1) supset D_n$が成り立つ。
-
 - 任意の$x in X$に対してある自然数$n$が存在して$x in D_n$である。
 
 つまり$D_n$は単調に大きくなって$union.big_n D_n = X$が成り立つ。
-
 ]
-なお、全体集合$bb(R)^N$をはじめとして基本的な点集合$X$には近似列が存在することに注意する。
+
+なお、全体集合$RR^N$をはじめとして基本的な点集合$X$には近似列が存在することに注意する。
 近似列が存在しないのは無理数の集合のような病的な場合である。
 以下では点集合$X$は近似列を持つものとする。
 
@@ -670,131 +669,170 @@ $N$次元有界集合$D$上の有界関数$f$で定義された重積分$integra
 点集合$X$上の関数$f$であって$X$に包含される任意の面積確定有界閉集合$D$上で（有界かつ）積分可能な時、$f$は_局所重積分可能_という。
 連続関数は局所可積分である。
 
-#block[
+#definition[
 $X$上の非負値の局所重積分可能関数$f$が
-$ inf_((D_n)) liminf_n integral_(D_n) f(x) dd(x) = sup_((D_n)) limsup_n integral_(D_n) f(x) dd(x) $
+$
+inf_((D_n)) liminf_n integral_(D_n) f(x) dd(x)
+= sup_((D_n)) limsup_n integral_(D_n) f(x) dd(x)
+$
 を満たすとき$X$上で_広義重積分可能_といい、その値を
-$ integral_X f(x) dd(x) $ と表し_広義重積分_という。
-ただし、この式において下限と上限は近似列$(D_n)$について取る。
+$
+integral_X f(x) dd(x) 
+$
+と表し_広義重積分_という。
+ただし、この式において下限と上限は$X$の近似列$(D_n)$について取る。
 
 非負値とは限らない$X$上の関数$f$に対してはその正部分と負部分
-\$\$f^+(x) = \\max { f(x), 0 },
-\\quad f^-(x) = \\max { -f(x), 0 }\$\$
+$
+f^+ (x) = max { f(x), 0 },
+quad f^-(x) = max { -f(x), 0 }
+$
 の両方が広義重積分可能な時、$f$は_広義重積分可能_といい、
-$ integral_X f(x) dd(x) = integral_X f^(+) (x) dd(x)-integral_X f^(-) (x) dd(x) $
+$
+integral_X f(x) dd(x) = integral_X f^+ (x) dd(x)-integral_X f^- (x) dd(x)
+$
 を$f$の$X$上での_広義重積分_という。
-
 ]
-#block[
+
+#remark[
 この広義重積分は一変数関数にも定義されるが、一変数の区間上の広義積分と微妙に定義が異なることに注意する。
 つまり広義重積分$integral_((a, b)) f(x) dd(x)$は任意の近似列を通して定義するが、一変数広義積分$integral_a^b f(x) dd(x)$は特殊な近似のみを考える。
 その結果、一変数広義積分では条件収束の場合が発生したが、広義重積分においては絶対収束のみで条件収束は起こらない。
-
 ]
+
 重積分可能性と同様に広義重積分可能性を個別の問題で確認するのは大変なので、
 十分条件（実際には必要十分条件になる）として次の定理を示す。
 
-#block[
+#lemma([非負値関数の広義重積分可能性])[
 $X$上の非負値局所重積分可能関数$f$に対して、
 $f$が$X$上で広義重積分可能であることは、
 $X$のある近似列$(D_n)$が存在して、
-$ sup_n integral_(D_n) f(x) dd(x) < oo $ が成り立つことと同値である。
-
+$
+sup_n integral_(D_n) f(x) dd(x) < oo
+$
+が成り立つことと同値である。
 ]
-#block[
 
+#proof[
 $f$が広義重積分可能という条件は任意の近似列に対するとても強い条件なので、ある近似列に対して数列$(integral_(D_n) f(x) dd(x))_n$は収束し特に有界である。
 逆について、$f$が非負値より数列$(integral_(D_n) f(x) dd(x))_n$は単調増加であり、仮定より有界なので収束する。
 この極限値を$I$とおく。
 ここで別の近似列$(D '_n)$に対して、$m = m_n$を十分大きくとれば$D'_n subset D_(m_n)$とできる。
 よって、
-$ integral_(D'_n) f(x) dd(x) <= integral_(D_(m_n)) f(x) dd(x) <= I $
+$
+integral_(D'_n) f(x) dd(x) <= integral_(D_(m_n)) f(x) dd(x) <= I
+$
 なので、数列$(integral_(D'_n) f(x) dd(x))_n$も有界で収束し極限値を$I'$とおくと$I' <= I$が成り立つ。
 $(D_n)$と$(D '_n)$を入れ替えて同じ議論をすれば$I <= I'$がわかるので、二つ目の条件が成り立つ。
-
 ]
-#block[
+
+#remark[
 $(integral_(D_n) f(x) dd(x))_n$が有界でない時は、
-$ lim_n integral_(D'_n) f(x) dd(x) = lim_n integral_(D_n) f(x) dd(x) = oo $
+$
+lim_n integral_(D'_n) f(x) dd(x) = lim_n integral_(D_n) f(x) dd(x) = oo
+$
 が成り立つ。
-
 ]
-#block[
+
+#theorem([広義重積分可能性])[
 $X$上の局所重積分可能関数$f$に対して以下の条件は同値である。
 
 + $f$は$X$上で広義重積分可能である。
-
-+ \$\\abs{f}\$は$X$上で広義重積分可能である。
-
++ $abs(f)$は$X$上で広義重積分可能である。
 + $X$のある近似列$(D_n)$が存在して、
-  \$\$\\sup\_n int\_{D\_n} \\abs{f(x)}\\dd{x} \< infty\$\$
+  $
+  sup_n int_(D_n) abs(f(x)) dd(x) < oo
+  $
   が成り立つ。
-
 ]
 この定理により今回の広義重積分可能性は絶対収束を意味する。
 
-#block[
- 二つ目と三つ目の条件の同値性は補題から従う。
-二つ目の条件が成り立つ時、\$f^+(x), f^-(x) <= \\abs{f(x)}\$より、$f^(+), f^(-)$はともに非負値広義重積分可能より一つ目の条件が成り立つ。
-一つ目の条件が成り立つ時、\$\\abs{f(x)} = f^+(x)+f^-(x)\$も広義重積分可能である。
-
+#proof[
+二つ目と三つ目の条件の同値性は補題から従う。
+二つ目の条件が成り立つ時、$f^+ (x), f^- (x) <= abs(f(x))$より、$f^+, f^-$はともに非負値広義重積分可能より一つ目の条件が成り立つ。
+一つ目の条件が成り立つ時、$abs(f(x)) = f^+ (x)+f^- (x)$も広義重積分可能である。
 ]
+
 以下では広義重積分を広義積分の広義積分つまり広義累次積分として計算する手法を紹介する。
 
-#block[
+#theorem([広義累次積分])[
 $X, Y$を集合として、$f(x, y)$を$X times Y$上の広義積分可能関数とする。
 ここで各$x in X$に対して$f(x, y)$は$y$について$Y$上広義積分可能とする時、
-$ integral.double_(X times Y) f(x, y) dd((x, y)) = integral_X integral_Y f(x, y) dd(y) dd(x) $
+$
+integral.double_(X times Y) f(x, y) dd((x, y))
+= integral_X integral_Y f(x, y) dd(y) dd(x)
+$
 が成り立つ。
 同様に各$y in Y$に対して$f(x, y)$は$x$について$X$上広義積分可能とする時、
-$ integral.double_(X times Y) f(x, y) dd((x, y)) = integral_Y integral_X f(x, y) dd(x) dd(y) $
+$
+integral.double_(X times Y) f(x, y) dd((x, y))
+= integral_Y integral_X f(x, y) dd(x) dd(y)
+$
 が成り立つ。
-
 ]
-#block[
 
+#proof[
 $X$の近似列として$(A_n)$を$Y$の近似列として$(B_n)$をそれぞれ取ると、
 $(A_n times B_n)$は$X times Y$の近似列になっていることに注意する。
 $f$は広義積分可能より
-\$\$\\iint\_{(X\\times Y)\\setminus(A\_n\\times B\_n)} \\abs{f(x, y)}\\dd{(x, y)} \\to 0\$\$
-である。 ここで、 \$\$\\begin{aligned}
-&\\abs{\\iint\_{A\_n\\times B\_n} f(x, y)\\dd{(x, y)}-int\_{A\_n} int\_Y f(x, y)\\dd{y}\\dd{x}} \\\\
-&\\quad <= int\_{A\_n} int\_{Y\\setminus B\_n} \\abs{f(x, y)}\\dd{y}\\dd{x}
-<= \\iint\_{(X\\times Y)\\setminus(A\_n\\times B\_n)} \\abs{f(x, y)}\\dd{(x, y)}
-\\to 0
-\\end{aligned}\$\$ なので、定理が証明される。
+$
+integral.double_((X times Y)\\(A_n times B_n)) abs(f(x, y)) dd((x, y))
+-> 0
+$
+である。
+ここで、
+$
+abs(integral.double_(A_n times B_n) f(x, y) dd((x, y))-integral_(A_n) integral_Y f(x, y) dd(y) dd(x))
+<= integral_(A_n) integral_(Y\\B_n) abs(f(x, y)) dd(y) dd(x)
+<= integral.double_((X times Y)\\(A_n times B_n)) abs(f(x, y)) dd((x, y))
+-> 0
+$
+なので、定理が証明される。
 後半部分も同様（証明省略）。
-
 ]
-#block[
-$X = \( 0, 1 \]^2$上の二変数関数
-$ f(x, y) = frac(x^2-y^2, (x^2+y^2)^2) $ の積分を考える。
+
+#example[
+$X = \(0, 1\]^2$上の二変数関数
+$
+f(x, y) = (x^2-y^2)/(x^2+y^2)^2
+$
+の積分を考える。
 この関数は$(x, y) = (0, 0)$では発散することに注意する。
 ここで$y$で先に積分すると
-\$\$int\_0^1 int\_0^1 \\frac{x^2-y^2}{(x^2+y^2)^2}\\dd{y}\\dd{x}
-= int\_0^1 \\lreval\*{\\frac{y}{x^2+y^2}}\_0^1\\dd{x}
-= int\_0^1 \\frac{1}{x^2+1}\\dd{x}
-= \\frac{\\pi}{4}\$\$ で、$x$で先に積分すると
-\$\$int\_0^1 int\_0^1 \\frac{x^2-y^2}{(x^2+y^2)^2}\\dd{x}\\dd{y}
-= int\_0^1 \\lreval\*{\\frac{-x}{x^2+y^2}}\_0^1\\dd{y}
-= int\_0^1 \\frac{-1}{1+y^2}\\dd{x}
-= -\\frac{\\pi}{4}\$\$ となり積分順序の交換が行えない例となっている。
+$
+integral_0^1 integral_0^1 (x^2-y^2)/(x^2+y^2)^2 dd(y) dd(x)
+= integral_0^1 [y/(x^2+y^2)]_0^1 dd(x)
+= integral_0^1 1/(x^2+1) dd(x)
+= pi/4
+$
+で、$x$で先に積分すると
+$
+integral_0^1 integral_0^1 (x^2-y^2)/(x^2+y^2)^2 dd(x) dd(y)
+= integral_0^1 [-x/(x^2+y^2)]_0^1 dd(y)
+= integral_0^1 -1/(1+y^2) dd(y)
+= -pi/4
+$
+となり積分順序の交換が行えない例となっている。
 これは$f$が$X$上で広義重積分可能でないことに起因しており、
-実際$X$の近似列として$D_n = [n^(- 1), 1] times \( 0, 1 \]$として取るのと$D'_n = \( 0, 1 \] times [n^(- 1), 1]$を取るのとで積分値が上記の通り異なっている。
-
+実際$X$の近似列として$D_n = [n^(-1), 1] times \(0, 1\]$として取るのと$D'_n = \(0, 1\] times [n^(-1), 1]$を取るのとで積分値が上記の通り異なっている。
 ]
+
 変数変換の定理も広義重積分に拡張される。
 
-#block[
-$x = Phi (u)$は$u$が動く面積確定開集合$U$を$x$が動く面積確定開集合$X$に一対一に移す$C^1$級変換としてヤコビアン$det J Phi (u)$の値は全ての$u in U$で非零とする。
+#theorem([広義重積分の変数変換])[
+$x = Phi(u)$は$u$が動く面積確定開集合$U$を$x$が動く面積確定開集合$X$に一対一に移す$C^1$級変換としてヤコビアン$det J Phi(u)$の値は全ての$u in U$で非零とする。
 この時、$X$上の連続関数$f(x)$に対して
-\$\$int\_X f(x)\\dd{x} = int\_U f(\\Phi(u))\\abs{\\det J\\Phi(u)}\\dd{u}\$\$
+$
+integral_X f(x) dd(x) = integral_U f(Phi(u))abs(det Phi(u)) dd(u)
+$
 が成り立つ。
-
 ]
-#block[
-二次元の極座標変換$x = r cos theta, y = r sin theta$を考えると、
-$ integral.double_X f(x, y) dd((x, y)) = integral.double_U f(r cos theta, r sin theta) r ⅆ (r, theta) $
-が成り立つ。
 
+#corollary([極座標変換])[
+二次元の極座標変換$x = r cos theta$, $y = r sin theta$を考えると、
+$
+integral.double_X f(x, y) dd((x, y))
+= integral.double_U f(r cos theta, r sin theta) r dd((r, theta))
+$
+が成り立つ。
 ]
