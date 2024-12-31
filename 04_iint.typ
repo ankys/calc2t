@@ -242,181 +242,301 @@ $
 または次節の累次積分の議論を使えば@t_repvol の系としても示すことができる。
 
 == 累次積分
-<累次積分>
+
 重積分は定積分同様定義にもとづいて具体的に積分を計算するのはかなり大変である。
 さらに重積分の場合には微分積分学の基本定理のようなものがない。
 そこで実用上は重積分を積分の積分とみなすことで一変数の定積分に帰着させるということが行われる。
 この積分の積分のことを累次積分といい、次の定理が基本になる。
 
-#block[
+#theorem([累次積分])[
 $A, B$を有界集合として、$f(x, y)$を$A times B$上の積分可能関数とする。
-ここで各$x in A$に対して$f(x, y)$は$y$について$B$上積分可能としてその積分値を$F (x)$とする時、
-$F (x)$は$A$上積分可能であって
-$ integral.double_(A times B) f(x, y) ⅆ (x, y) = integral_A F (x) dd(x) = integral_A integral_B f(x, y) ⅆ y dd(x) $
+ここで各$x in A$に対して$f(x, y)$は$y$について$B$上積分可能としてその積分値を$F(x)$とする時、
+$F(x)$は$A$上積分可能であって
+$
+integral.double_(A times B) f(x, y) dd((x, y))
+= integral_A F (x) dd(x)
+= integral_A integral_B f(x, y) dd(y) dd(x) $
 が成り立つ。
-同様に各$y in B$に対して$f(x, y)$は$x$について$A$上積分可能としてその積分値を$G (y)$とする時、
-$G (y)$は$B$上積分可能であって
-$ integral.double_(A times B) f(x, y) ⅆ (x, y) = integral_B G (y) ⅆ y = integral_B integral_A f(x, y) dd(x) ⅆ y $
+同様に各$y in B$に対して$f(x, y)$は$x$について$A$上積分可能としてその積分値を$G(y)$とする時、
+$G(y)$は$B$上積分可能であって
+$
+integral.double_(A times B) f(x, y) dd((x, y))
+= integral_B G (y) dd(y)
+= integral_B integral_A f(x, y) dd(x) dd(y)
+$
 が成り立つ。
 特に各積分が収束するならば$N$変数関数$f(x_1, dots, x_N)$について
-$ integral_([a_1, b_1] times dots times [a_N, b_N]) f(x_1, dots, x_N) ⅆ (x_1, dots, x_N) = integral_(a_1)^(b_1) dots integral_(a_N)^(b_N) f(x_1, dots, x_N) dd(x)_N dots dd(x)_1 $
+$
+integral_([a_1, b_1] times dots times [a_N, b_N]) f(x_1, dots, x_N) dd((x_1, dots, x_N))
+= integral_(a_1)^(b_1) dots integral_(a_N)^(b_N) f(x_1, dots, x_N) dd(x_N) dots dd(x_1)
+$
 が成り立つ。
-
 ]
-#block[
- まず一般に$f(x, y)$が上に有界の時、上積分について
-$ overline(integral.double)_(A times B) f(x, y) ⅆ (x, y) gt.eq overline(integral)_A overline(integral)_B f(x, y) ⅆ y dd(x) $
+
+#proof[
+まず一般に$f(x, y)$が上に有界の時、上積分について
+$
+overline(integral.double)_(A times B) f(x, y) dd((x, y))
+>= overline(integral)_A overline(integral)_B f(x, y) dd(y) dd(x)
+$
 が成り立つことを示す。
 $A$の分割の一つの矩形を$C_A$、$B$のを$C_B$とおくと
-\$\$\\overline{\\int}\_{C\_A} \\overline{\\int}\_{C\_B} f(x, y)\\dd{y}\\dd{x}
-\\le \\overline{\\int}\_{C\_A} \\overline{\\int}\_{C\_B} \\sup\_{x \\in C\_A, y \\in C\_B}f(x, y)\\dd{y}\\dd{x}
-= \\sup\_{C\_A\\times C\_B}f\\abs{C\_A}\\abs{C\_B}\$\$
+$
+overline(integral)_(C_A) overline(integral)_(C_B) f(x, y) dd(y) dd(x)
+<= overline(integral)_(C_A) overline(integral)_(C_B) sup_(x in C_A, y in C_B) f(x, y) dd(y) dd(x)
+= sup_(C_A times C_B) f area(C_A) area(C_B)
+$
 なので、これらを集めることで上の上積分についての不等式を得る。
 同様にして下積分について
-$ underline(integral.double)_(A times B) f(x, y) ⅆ (x, y) <= underline(integral)_A underline(integral)_B f(x, y) ⅆ y dd(x) $
-も得る。 ここで
-$ underline(integral.double)_(A times B) f(x, y) ⅆ (x, y) <= underline(integral)_A underline(integral)_B f(x, y) ⅆ y dd(x) <= underline(integral)_A overline(integral)_B f(x, y) ⅆ y dd(x) <= overline(integral)_A overline(integral)_B f(x, y) ⅆ y dd(x) <= overline(integral.double)_(A times B) f(x, y) ⅆ (x, y), $
-$ underline(integral.double)_(A times B) f(x, y) ⅆ (x, y) <= underline(integral)_A underline(integral)_B f(x, y) ⅆ y dd(x) <= overline(integral)_A underline(integral)_B f(x, y) ⅆ y dd(x) <= overline(integral)_A overline(integral)_B f(x, y) ⅆ y dd(x) <= overline(integral.double)_(A times B) f(x, y) ⅆ (x, y) $
+$
+underline(integral.double)_(A times B) f(x, y) dd((x, y))
+<= underline(integral)_A underline(integral)_B f(x, y) dd(y) dd(x)
+$
+も得る。
+ここで
+$
+underline(integral.double)_(A times B) f(x, y) dd((x, y))
+<= underline(integral)_A underline(integral)_B f(x, y) dd(y) dd(x)
+<= underline(integral)_A overline(integral)_B f(x, y) dd(y) dd(x)
+<= overline(integral)_A overline(integral)_B f(x, y) dd(y) dd(x)
+<= overline(integral.double)_(A times B) f(x, y) dd((x, y)),
+$
+$
+underline(integral.double)_(A times B) f(x, y) dd((x, y))
+<= underline(integral)_A underline(integral)_B f(x, y) dd(y) dd(x)
+<= overline(integral)_A underline(integral)_B f(x, y) dd(y) dd(x)
+<= overline(integral)_A overline(integral)_B f(x, y) dd(y) dd(x)
+<= overline(integral.double)_(A times B) f(x, y) dd((x, y))
+$
 なので、重積分可能条件より最左辺と最右辺が等しいことから全ての等号が成り立つ、つまり
-$ integral.double_(A times B) f(x, y) ⅆ (x, y) = integral_A underline(integral)_B f(x, y) ⅆ y dd(x) = integral_A overline(integral)_B f(x, y) ⅆ y dd(x) $
-である。 特に$y$について積分可能性があれば定理の前半部分が証明される。
+$
+integral.double_(A times B) f(x, y) dd((x, y))
+= integral_A underline(integral)_B f(x, y) dd(y) dd(x)
+= integral_A overline(integral)_B f(x, y) dd(y) dd(x)
+$
+である。
+特に$y$について積分可能性があれば定理の前半部分が証明される。
 後半も同様（証明省略）。
-
 ]
-#block[
+
+#corollary([フビニの定理])[
 $A, B$を有界集合として、$f(x, y)$を$A times B$上の積分可能関数とする。
 ここで各$x in A$に対して$f(x, y)$は$y$について$B$上積分可能、各$y in B$に対して$f(x, y)$は$x$について$A$上積分可能とする時、
-$ integral_A integral_B f(x, y) ⅆ y dd(x) = integral_B integral_A f(x, y) dd(x) ⅆ y $
-が成り立つ。 つまり積分順序の交換ができる。
-
-]
-#block[
-変数分離された関数$f(x) g(y)$に対して
-$ integral.double_(A times B) f(x) g(y) ⅆ (x, y) = integral_A f(x) dd(x) integral_B g(y) ⅆ y $
+$
+integral_A integral_B f(x, y) dd(y) dd(x)
+= integral_B integral_A f(x, y) dd(x) dd(y)
+$
 が成り立つ。
-
+つまり積分順序の交換ができる。
 ]
-#block[
-重積分 $ I = integral.double_([0, 1] times [0, 1]) x y ⅆ (x, y) $
+
+#corollary([変数分離の重積分])[
+変数分離された関数$f(x) g(y)$に対して
+$
+integral.double_(A times B) f(x) g(y) dd((x, y))
+= integral_A f(x) dd(x) integral_B g(y) dd(y)
+$
+が成り立つ。
+]
+
+#example[
+重積分
+$
+I = integral.double_([0, 1] times [0, 1]) x y dd((x, y))
+$
 を考える。
-これを重積分の定義に従って計算すると、特殊な分割として二つの区間$[0, 1]$を$K = 1, 2, 3, dots$等分して$k, l = 1, dots, K$に対して$(x, y) = (k / K, l / K)$での値を考えることで
-$ I = lim_(K arrow.r oo) sum_(k = 1)^K sum_(l = 1)^K k / K l / K 1 / K^2 = lim_(K arrow.r oo) 1 / K^4 dot.op 1 / 2 K (K+1) dot.op 1 / 2 K (K+1) = 1 / 4 $
-を得る。 一方で累次積分を使うと、
-$ I = integral_0^1 x dd(x) integral_0^1 y ⅆ y = 1 / 2 dot.op 1 / 2 = 1 / 4 $
+これを重積分の定義に従って計算すると、特殊な分割として二つの区間$[0, 1]$を$K = 1, 2, 3, dots$等分して$k, l = 1, dots, K$に対して$(x, y) = (k/K, l/K)$での値を考えることで
+$
+I
+= lim_(K -> oo) sum_(k = 1)^K sum_(l = 1)^K k/K l/K 1/K^2
+= lim_(K -> oo) 1/K^4 dot 1/2 K (K+1) dot 1/2 K (K+1) = 1/4 $
+を得る。
+一方で累次積分を使うと、
+$
+I
+= integral_0^1 x dd(x) integral_0^1 y dd(y)
+= 1/2 dot 1/2
+= 1/4
+$
 と計算される。
 一般に数列和の計算は大変で積分の方が計算しやすいので、積分の積分すなわち累次積分を利用すると良い。
-
 ]
+
 上記の例では$x$と$y$が対称であったが、非対称な問題ではどちらの変数で先に積分するかで計算の手間が変わる場合がある。
 そのような問題では原始関数が計算しやすい方の変数で先に積分すると良い。
 
-#block[
+#example[
 重積分
-$ I = integral.double_([0, 1] times [0, 1]) x^2 y e^(x y^2) ⅆ (x, y) $
-を考える。 $x$で先に積分すると、原始関数が
-$ integral x^2 y e^(x y^2) dd(x) & = integral x^2 1 / y (e^(x y^2))' dd(x) = x^2 1 / y e^(x y^2)-integral 2 x 1 / y e^(x y^2) dd(x)\
- & = x^2 1 / y e^(x y^2)-integral 2 x 1 / y^3 (e^(x y^2))' dd(x) = x^2 1 / y e^(x y^2)-2 x 1 / y^3 e^(x y^2)+integral 2 1 / y^3 e^(x y^2) dd(x)\
- & = x^2 1 / y e^(x y^2)-2 x 1 / y^3 e^(x y^2)+2 1 / y^5 e^(x y^2)+C $
-より、 \$\$\\int\_0^1 x^2 y e^{x y^2}\\dd{x}
-= \\lreval\*{x^2 \\frac{1}{y} e^{x y^2}-2 x \\frac{1}{y^3} e^{x y^2}+2 \\frac{1}{y^5} e^{x y^2}}\_0^1
-= \\frac{1}{y} e^{y^2}-2\\frac{1}{y^3} e^{y^2}+2 \\frac{1}{y^5} e^{y^2}-2 \\frac{1}{y^5}\$\$
+$
+I = integral.double_([0, 1] times [0, 1]) x^2 y e^(x y^2) dd((x, y))
+$
+を考える。
+$x$で先に積分すると、原始関数が
+$
+integral x^2 y e^(x y^2) dd(x)
+& = integral x^2 1/y (e^(x y^2))' dd(x)
+= x^2 1/y e^(x y^2)-integral 2 x 1/y e^(x y^2) dd(x) \
+&= x^2 1/y e^(x y^2)-integral 2 x 1/y^3 (e^(x y^2))' dd(x)
+= x^2 1/y e^(x y^2)-2 x 1/y^3 e^(x y^2)+integral 2 1/y^3 e^(x y^2) dd(x) \
+&= x^2 1/y e^(x y^2)-2 x 1/y^3 e^(x y^2)+2 1/y^5 e^(x y^2)+C
+$
+より、
+$
+integral_0^1 x^2 y e^(x y^2) dd(x)
+= [x^2 1/y e^(x y^2)-2 x 1/y^3 e^(x y^2)+2 1/y^5 e^(x y^2)]_0^1
+= 1/y e^(y^2)-2 1/y^3 e^(y^2)+2 1/y^5 e^(y^2)-2 1/y^5
+$
 となり、頑張れば
-\$\$\\int \\frac{1}{y} \\qty(e^{y^2}-2\\frac{1}{y^3} e^{y^2}+2 \\frac{1}{y^5} e^{y^2}-2 \\frac{1}{y^5})\\dd{y}
-= \\frac{e^{y^2}y^2-e^{y^2}+1}{2 y^4}
-= \\frac{1}{4}+\\frac{1}{6}y^2+\\cdots\$\$ がわかるので、最初の重積分は
-\$\$I
-= \\int\_0^1 \\qty(\\frac{1}{y} e^{y^2}-2\\frac{1}{y^3} e^{y^2}+2 \\frac{1}{y^5} e^{y^2}-2 \\frac{1}{y^5})\\dd{y}
-= \\frac{1}{4}\$\$ である。 その一方$y$で先に積分すると、原始関数が
-$ integral x^2 y e^(x y^2) ⅆ y = 1 / 2 x e^(x y^2)+C $ より、
-\$\$\\int\_0^1 x^2 y e^{x y^2}\\dd{y}
-= \\lreval\*{\\frac{1}{2}x e^{x y^2}}\_0^1
-= \\frac{1}{2}x e^x-\\frac{1}{2}x\$\$ なので、 \$\$I
-= \\int\_0^1 \\qty(\\frac{1}{2}x e^x-\\frac{1}{2}x)\\dd{x}
-= \\lreval\*{\\frac{1}{2}(x e^x-e^x)-\\frac{1}{4}x^2}\_0^1
-= \\frac{1}{4}\$\$ となる。
+$
+integral (1/y e^(y^2)-2 1/y^3 e^(y^2)+2 1/y^5 e^(y^2)-2 1/y^5) dd(y)
+= (e^(y^2) y^2-e^(y^2)+1)/(2 y^4)
+= 1/4+1/6 y^2+cdots
+$
+がわかるので、最初の重積分は
+$
+I
+= integral_0^1 (1/y e^(y^2)-2 1/y^3 e^(y^2)+2 1/y^5 e^(y^2)-2 1/y^5) dd(y)
+= 1/4
+$
+である。
+その一方$y$で先に積分すると、原始関数が
+$
+integral x^2 y e^(x y^2) dd(y) = 1/2 x e^(x y^2)+C
+$
+より、
+$
+integral_0^1 x^2 y e^(x y^2) dd(y)
+= [1/2 x e^(x y^2)]_0^1
+= 1/2 x e^x-1/2 x
+$
+なので、
+$
+I
+= integral_0^1 (1/2 x e^x-1/2 x) dd(x)
+= [1/2 (x e^x-e^x)-1/4 x^2]_0^1
+= 1/4
+$
+となる。
 計算結果は同じだが、そこに行き着く労力には大きな差がある。
 特に先に原始関数が簡単にわかる方で計算することで次の積分がより計算しやすい形になっている。
-
 ]
-以上は長方形領域での議論であるが、一般の形状の積分領域においては$x$（または$y$）を固定すると$y$
-($x$)の動く範囲が$x$ ($y$)によって変わることになる。
-つまり、$(x, y)$が動く集合$D subset A times B$が$x in A$を固定するごとに$y$が$B (x)$を動くとすると
-\$\$D =  { (x, y) \\mid x \\in A, y \\in B(x) }\$\$
+
+以上は長方形領域での議論であるが、一般の形状の積分領域においては$x$（または$y$）を固定すると$y$ ($x$)の動く範囲が$x$ ($y$)によって変わることになる。
+つまり、$(x, y)$が動く集合$D subset A times B$が$x in A$を固定するごとに$y$が$B(x)$を動くとすると
+$
+D = { (x, y) mid(|) x in A, y in B(x) }
+$
 と表されて、この時$D$は_縦線集合_と呼ばれる。
 同様に$y in B$を固定するごとに$x$が$A (y)$を動くとすると
-\$\$D =  { (x, y) \\mid y \\in B, x \\in A(y) }\$\$
+$
+D = { (x, y) mid(|) y in B, x in A(y) }
+$
 と表されて、この時$D$は_横線集合_と呼ばれる。
 
-#block[
-$f(x, y)$を縦線集合\$D =  { (x, y) \\mid x \\in A, y \\in B(x) }\$上の積分可能な関数であり各$x in A$に対して$f(x, y)$は$y$について$B (x)$上積分可能とする時、
-$ integral.double_D f(x, y) ⅆ (x, y) = integral_A integral_(B (x)) f(x, y) ⅆ y dd(x) $
+#corollary([一般領域での累次積分])[
+$f(x, y)$を縦線集合$D = { (x, y) mid(|) x in A, y in B(x) }$上の積分可能な関数であり各$x in A$に対して$f(x, y)$は$y$について$B(x)$上積分可能とする時、
+$
+integral.double_D f(x, y) dd((x, y))
+= integral_A integral_(B(x)) f(x, y) dd(y) dd(x)
+$
 が成り立つ。
-$f(x, y)$を横線集合\$D =  { (x, y) \\mid y \\in B, x \\in A(y) }\$上の積分可能な関数であり各$y in B$に対して$f(x, y)$は$x$について$A (y)$上積分可能とする時、
-$ integral.double_D f(x, y) ⅆ (x, y) = integral_B integral_(A (y)) f(x, y) dd(x) ⅆ y $
+$f(x, y)$を横線集合$D = { (x, y) mid(|) y in B, x in A(y) }$上の積分可能な関数であり各$y in B$に対して$f(x, y)$は$x$について$A(y)$上積分可能とする時、
+$
+integral.double_D f(x, y) dd((x, y))
+= integral_B integral_(A(y)) f(x, y) dd(x) dd(y)
+$
 が成り立つ。
-
 ]
+
 よくある適用例は積分の積分が与えられた時に積分順序を入れ替えることである。
 その場合には縦線集合と横線集合の変換をする必要があるので注意する。
 
-#block[
+#example[
 $x$軸と$y$軸と直線$x+y = 1$で囲まれた部分を$D$とおいて重積分
-$ I = integral.double_D x y ⅆ (x, y) $ を考える。 この時、$D$は縦線集合
-\$\$D =  { (x, y) \\mid 0 \\le x \\le 1, 0 \\le y \\le 1-x }\$\$
-とみなせるので、
-$ I = integral_0^1 integral_0^(1-x) x y ⅆ y dd(x) = integral_0^1 1 / 2 x (1-x)^2 dd(x) = 1 / 24 $
-と計算される。
-
-]
-#block[
-積分の積分 $ I = integral_0^1 integral_x^1 e^(- y^2) ⅆ y dd(x) $
+$
+I = integral.double_D x y dd((x, y))
+$
 を考える。
-実は$e^(- y^2)$は原始関数が初等関数では表せない関数なので、このままでは内側の積分が計算できない。
-そこで積分の順序交換を行うために積分領域を縦線集合から横線集合に変更すると
-\$\$ { (x, y) \\mid 0 \\le x \\le 1, x \\le y \\le 1 }
-=  { (x, y) \\mid 0 \\le y \\le 1, 0 \\le x \\le y }\$\$ より、
-\$\$I
-= \\int\_0^1 \\int\_x^1 e^{-y^2}\\dd{y}\\dd{x}
-= \\int\_0^1 \\int\_0^y e^{-y^2}\\dd{x}\\dd{y}
-= \\int\_0^1 y e^{-y^2}\\dd{y}
-= \\lreval\*{-\\frac{1}{2}e^{-y^2}}
-= \\frac{e-1}{2 e}\$\$ と計算される。
-
+この時、$D$は縦線集合
+$
+D = { (x, y) mid(|) 0 <= x <= 1, 0 <= y <= 1-x }
+$
+とみなせるので、
+$
+I
+= integral_0^1 integral_0^(1-x) x y dd(y) dd(x)
+= integral_0^1 1/2 x (1-x)^2 dd(x)
+= 1/24
+$
+と計算される。
 ]
+
+#example[
+積分の積分
+$
+I = integral_0^1 integral_x^1 e^(-y^2) dd(y) dd(x)
+$
+を考える。
+実は$e^(-y^2)$は原始関数が初等関数では表せない関数なので、このままでは内側の積分が計算できない。
+そこで積分の順序交換を行うために積分領域を縦線集合から横線集合に変更すると
+$
+{ (x, y) mid(|) 0 <= x <= 1, x <= y <= 1 }
+= { (x, y) mid(|) 0 <= y <= 1, 0 <= x <= y }
+$
+より、
+$
+I
+= integral_0^1 integral_0^y e^(-y^2) dd(x) dd(y)
+= integral_0^1 y e^(-y^2) dd(y)
+= [-1/2 e^(-y^2)]_0^1
+= (e-1)/(2 e)
+$
+と計算される。
+]
+
 特に$f$を定数関数$1$とすると集合の体積（今までは面積と呼んでいたが次数が上がるので体積と呼ぶ）について次が得られる。
 
-#block[
-<t:repvol>
-縦線集合\$D =  { (x, y) \\mid x \\in A, y \\in B(x) }\$の体積は
-\$\$\\vol(D)
-= \\int\_A \\area(B(x))\\dd{x}\$\$ で与えられ、
-横線集合\$D =  { (x, y) \\mid y \\in B, x \\in A(y) }\$の体積は
-\$\$\\vol(D)
-= \\int\_B \\area(A(y))\\dd{y}\$\$ で与えられる。
+#corollary([カヴァリエリの原理])[
+縦線集合$D = { (x, y) mid(|) x in A, y in B(x) }$の体積は
+$
+vol(D)
+= integral_A area(B(x)) dd(x)
+$
+で与えられ、
+横線集合$D = { (x, y) mid(|) y in B, x in A(y) }$の体積は
+$
+vol(D)
+= integral_B area(A(y)) dd(y)
+$
+で与えられる。
+] <t_repvol>
 
-]
-#block[
-単位球\$B =  { (x, y, z) \\in  RR^3 \\mid x^2+y^2+z^2 \\le 1 }\$の体積を考える。
-これは縦線集合あるいは横線集合として \$\$\\begin{aligned}
+#example[
+単位球$B = { (x, y, z) in  RR^3 mid(|) x^2+y^2+z^2 <= 1 }$の体積を考える。
+これは縦線集合あるいは横線集合として
+$
 B
-&=  { (x, y, z) \\in  RR^3 \\mid x^2+y^2 \\le 1, -\\sqrt{1-x^2-y^2} \\le z \\le +\\sqrt{1-x^2-y^2} } \\\\
-&=  { (x, y, z) \\in  RR^3 \\mid -1 \\le z \\le +1, x^2+y^2 \\le 1-z^2 }
-\\end{aligned}\$\$ として表される。
-そのため半径$r$の円板を\$D(r) =  { (x, y) \\in  RR^2 \\mid x^2+y^2 \\le r^2 }\$として、
-\$\$\\vol(B)
-= \\iint\_{D(1)} 2\\sqrt{1-x^2-y^2}\\dd{(x, y)}
-= \\int\_{-1}^{+1} \\area(D(\\sqrt{1-z^2}))\\dd{z}\$\$
+= { (x, y, z) in RR^3 mid(|) x^2+y^2 <= 1, -sqrt(1-x^2-y^2) <= z <= +sqrt(1-x^2-y^2) }
+= { (x, y, z) in RR^3 mid(|) -1 <= z <= +1, x^2+y^2 <= 1-z^2 }
+$
+として表される。
+そのため半径$r$の円板を\$D(r) =  { (x, y) in  RR^2 mid(|) x^2+y^2 <= r^2 }\$として、
+$
+vol(B)
+= integral_(D(1)) 2 sqrt(1-x^2-y^2) dd((x, y))
+= integral_(-1)^(+1) area(D(sqrt(1-z^2))) dd(z)
+$
 と二通りの計算法があることがわかる。
 球の体積について詳しくは次章で述べる。
-
 ]
+
 == 変数変換の公式
 <変数変換の公式>
 #block[
 $x = Phi (u)$は$u$が動く開集合$U$を$x$が動く開集合$X$に一対一に移す$C^1$級変換としてヤコビアン$det J Phi (u)$の値は全ての$u in U$で非零とする。
 この時、$X$の面積確定有界閉部分集合$D$とその上の連続関数$f(x)$に対して
 \$\$\\label{e:cvcpt}
-\\int\_D f(x)\\dd{x} = \\int\_{\\Phi^{-1}(D)} f(\\Phi(u))\\abs{\\det J\\Phi(u)}\\dd{u}\$\$
+int\_D f(x)\\dd{x} = int\_{\\Phi^{-1}(D)} f(\\Phi(u))\\abs{\\det J\\Phi(u)}\\dd{u}\$\$
 が成り立つ。
 
 ]
@@ -431,7 +551,7 @@ $x = Phi (u)$は$u$が動く開集合$U$を$x$が動く開集合$X$に一対一�
 ]
 #block[
 二次元の極座標変換$x = r cos theta, y = r sin theta$を考えると、
-$ integral.double_X f(x, y) ⅆ (x, y) = integral.double_U f(r cos theta, r sin theta) r ⅆ (r, theta) $
+$ integral.double_X f(x, y) dd((x, y)) = integral.double_U f(r cos theta, r sin theta) r ⅆ (r, theta) $
 が成り立つ。
 
 ]
@@ -442,10 +562,10 @@ $D$を面積確定有界閉集合として$f$をその上の連続関数とす�
 この時、連続性の度合い$omega$が存在して次のようにできる。
 $P$を$D$の分割、つまり$D$の面積確定有界閉部分集合$E$の集合で、任意の$E_1, E_2 in P$に対して$E_1 sect E_2$は面積零集合で$union.big_(E in P) E = D$を満たすとする。
 この時、各$E$の任意の点$hat(x) in E$に対して
-\$\$\\abs{\\sum\_{E \\in P}f(\\hat{x})\\area(E)-\\int\_D f(x)\\dd{x}}
-\\le \\omega(\\max\_{E \\in P}\\diag(E))\\area(D)\$\$ が成り立つ。
+\$\$\\abs{\\sum\_{E in P}f(\\hat{x})\\area(E)-int\_D f(x)\\dd{x}}
+<= \\omega(\\max\_{E in P}\\diag(E))\\area(D)\$\$ が成り立つ。
 ただし、\$\\diag(E)\$は$E$の二点の最大距離つまり
-\$\$\\diag(E) = \\sup\_{x, y \\in E}d(x, y)\$\$ を表す。
+\$\$\\diag(E) = \\sup\_{x, y in E}d(x, y)\$\$ を表す。
 
 ]
 この補題は重積分の定義で分割を小さな矩形でしていたのをもっと一般の図形で分割しても積分値は変わらないことを意味している。
@@ -453,12 +573,12 @@ $P$を$D$の分割、つまり$D$の面積確定有界閉部分集合$E$の集�
 #block[
  $f$は$D$上一様連続より連続性の度合いを$omega$とすると、
 \$\$\\begin{aligned}
-\\abs{\\sum\_{E \\in P}f(\\hat{x})\\area(E)-\\int\_D f(x)\\dd{x}}
-&= \\abs{\\sum\_{E \\in P}\\int\_E f(\\hat{x})\\dd{x}-\\sum\_{E \\in P}\\int\_E f(x)\\dd{x}}
-\\le \\sum\_{E \\in P}\\int\_E \\abs{f(x)-f(\\hat{x})}\\dd{x} \\\\
-&\\le \\sum\_{E \\in P}\\int\_E \\omega(\\diag(E))\\dd{x}
-% \\le \\omega(\\max\_{E \\in P}\\diag(E))\\sum\_{E \\in P}\\int\_E \\dd{x}
-\\le \\omega(\\max\_{E \\in P}\\diag(E))\\area(D)
+\\abs{\\sum\_{E in P}f(\\hat{x})\\area(E)-int\_D f(x)\\dd{x}}
+&= \\abs{\\sum\_{E in P}int\_E f(\\hat{x})\\dd{x}-\\sum\_{E in P}int\_E f(x)\\dd{x}}
+<= \\sum\_{E in P}int\_E \\abs{f(x)-f(\\hat{x})}\\dd{x} \\\\
+&<= \\sum\_{E in P}int\_E \\omega(\\diag(E))\\dd{x}
+% <= \\omega(\\max\_{E in P}\\diag(E))\\sum\_{E in P}int\_E \\dd{x}
+<= \\omega(\\max\_{E in P}\\diag(E))\\area(D)
 \\end{aligned}\$\$ である。
 
 ]
@@ -487,15 +607,15 @@ $n = 0, 1, 2, 3, dots$に対して、全空間$bb(R)^N$を一辺の長さが$h =
 $i_1, dots, i_N in bb(Z)$)に分割する。
 $P_n$を$U$に含まれるような正方形$R_u = R_(u, h)$全体として、$P_n$の正方形$R_u$を$Phi$で移した図形$E_x$
 ($x = Phi (u)$)の集合を$Q_n$とおく。
-この時、$tilde(f) (x) = f(x) 1_D (x)$として$n arrow.r oo$において
-\$\$\\sum\_{E\_x \\in Q\_n} \\tilde{f}(x)\\area(E\_x) \\to \\int\_D f(x)\\dd{x},
-\\quad \\sum\_{R\_u \\in P\_n} \\tilde{f}(\\Phi(u))\\abs{\\det J\\Phi(u)}\\area(R\_u) \\to \\int\_{\\Phi^{-1}(D)} f(\\Phi(u))\\abs{\\det J\\Phi(u)}\\dd{u}\$\$
+この時、$tilde(f) (x) = f(x) 1_D (x)$として$n -> oo$において
+\$\$\\sum\_{E\_x in Q\_n} \\tilde{f}(x)\\area(E\_x) \\to int\_D f(x)\\dd{x},
+\\quad \\sum\_{R\_u in P\_n} \\tilde{f}(\\Phi(u))\\abs{\\det J\\Phi(u)}\\area(R\_u) \\to int\_{\\Phi^{-1}(D)} f(\\Phi(u))\\abs{\\det J\\Phi(u)}\\dd{u}\$\$
 であることに注意する。 ここで、 \$\$\\begin{aligned}
-&\\abs{\\sum\_{E\_x \\in Q\_n} f(x)\\area(E\_x)-\\sum\_{R\_u \\in P\_n} f(\\Phi(u))\\abs{\\det J\\Phi(u)}\\area(R\_u)} \\\\
-&\\quad \\le \\sum\_{R\_u \\in P\_n} \\abs{f(\\Phi(u))}\\abs{\\area(\\Phi(R\_u))-\\abs{\\det J\\Phi(u)}\\area(R\_u)} \\\\
-&\\quad \\le \\sum\_{R\_u \\in P\_n} \\abs{f(\\Phi(u))}\\abs{\\det J\\Phi(u)}\\area(R\_u)\\omega(h)
+&\\abs{\\sum\_{E\_x in Q\_n} f(x)\\area(E\_x)-\\sum\_{R\_u in P\_n} f(\\Phi(u))\\abs{\\det J\\Phi(u)}\\area(R\_u)} \\\\
+&\\quad <= \\sum\_{R\_u in P\_n} \\abs{f(\\Phi(u))}\\abs{\\area(\\Phi(R\_u))-\\abs{\\det J\\Phi(u)}\\area(R\_u)} \\\\
+&\\quad <= \\sum\_{R\_u in P\_n} \\abs{f(\\Phi(u))}\\abs{\\det J\\Phi(u)}\\area(R\_u)\\omega(h)
 \\end{aligned}\$\$ なので、
-$n arrow.r oo$とすると$h arrow.r 0$であり$omega (h) arrow.r 0$より等式#link(<e:cvcpt>)[\[e:cvcpt\]_が得られる。
+$n -> oo$とすると$h -> 0$であり$omega (h) -> 0$より等式#link(<e:cvcpt>)[\[e:cvcpt\]_が得られる。
 
 ]
 == 広義重積分
@@ -583,7 +703,7 @@ $X$上の局所重積分可能関数$f$に対して以下の条件は同値で�
 + \$\\abs{f}\$は$X$上で広義重積分可能である。
 
 + $X$のある近似列$(D_n)$が存在して、
-  \$\$\\sup\_n \\int\_{D\_n} \\abs{f(x)}\\dd{x} \< \\infty\$\$
+  \$\$\\sup\_n int\_{D\_n} \\abs{f(x)}\\dd{x} \< infty\$\$
   が成り立つ。
 
 ]
@@ -591,7 +711,7 @@ $X$上の局所重積分可能関数$f$に対して以下の条件は同値で�
 
 #block[
  二つ目と三つ目の条件の同値性は補題から従う。
-二つ目の条件が成り立つ時、\$f^+(x), f^-(x) \\le \\abs{f(x)}\$より、$f^(+), f^(-)$はともに非負値広義重積分可能より一つ目の条件が成り立つ。
+二つ目の条件が成り立つ時、\$f^+(x), f^-(x) <= \\abs{f(x)}\$より、$f^(+), f^(-)$はともに非負値広義重積分可能より一つ目の条件が成り立つ。
 一つ目の条件が成り立つ時、\$\\abs{f(x)} = f^+(x)+f^-(x)\$も広義重積分可能である。
 
 ]
@@ -600,10 +720,10 @@ $X$上の局所重積分可能関数$f$に対して以下の条件は同値で�
 #block[
 $X, Y$を集合として、$f(x, y)$を$X times Y$上の広義積分可能関数とする。
 ここで各$x in X$に対して$f(x, y)$は$y$について$Y$上広義積分可能とする時、
-$ integral.double_(X times Y) f(x, y) ⅆ (x, y) = integral_X integral_Y f(x, y) ⅆ y dd(x) $
+$ integral.double_(X times Y) f(x, y) dd((x, y)) = integral_X integral_Y f(x, y) dd(y) dd(x) $
 が成り立つ。
 同様に各$y in Y$に対して$f(x, y)$は$x$について$X$上広義積分可能とする時、
-$ integral.double_(X times Y) f(x, y) ⅆ (x, y) = integral_Y integral_X f(x, y) dd(x) ⅆ y $
+$ integral.double_(X times Y) f(x, y) dd((x, y)) = integral_Y integral_X f(x, y) dd(x) dd(y) $
 が成り立つ。
 
 ]
@@ -614,9 +734,9 @@ $(A_n times B_n)$は$X times Y$の近似列になっていることに注意す�
 $f$は広義積分可能より
 \$\$\\iint\_{(X\\times Y)\\setminus(A\_n\\times B\_n)} \\abs{f(x, y)}\\dd{(x, y)} \\to 0\$\$
 である。 ここで、 \$\$\\begin{aligned}
-&\\abs{\\iint\_{A\_n\\times B\_n} f(x, y)\\dd{(x, y)}-\\int\_{A\_n} \\int\_Y f(x, y)\\dd{y}\\dd{x}} \\\\
-&\\quad \\le \\int\_{A\_n} \\int\_{Y\\setminus B\_n} \\abs{f(x, y)}\\dd{y}\\dd{x}
-\\le \\iint\_{(X\\times Y)\\setminus(A\_n\\times B\_n)} \\abs{f(x, y)}\\dd{(x, y)}
+&\\abs{\\iint\_{A\_n\\times B\_n} f(x, y)\\dd{(x, y)}-int\_{A\_n} int\_Y f(x, y)\\dd{y}\\dd{x}} \\\\
+&\\quad <= int\_{A\_n} int\_{Y\\setminus B\_n} \\abs{f(x, y)}\\dd{y}\\dd{x}
+<= \\iint\_{(X\\times Y)\\setminus(A\_n\\times B\_n)} \\abs{f(x, y)}\\dd{(x, y)}
 \\to 0
 \\end{aligned}\$\$ なので、定理が証明される。
 後半部分も同様（証明省略）。
@@ -627,13 +747,13 @@ $X = \( 0, 1 \]^2$上の二変数関数
 $ f(x, y) = frac(x^2-y^2, (x^2+y^2)^2) $ の積分を考える。
 この関数は$(x, y) = (0, 0)$では発散することに注意する。
 ここで$y$で先に積分すると
-\$\$\\int\_0^1 \\int\_0^1 \\frac{x^2-y^2}{(x^2+y^2)^2}\\dd{y}\\dd{x}
-= \\int\_0^1 \\lreval\*{\\frac{y}{x^2+y^2}}\_0^1\\dd{x}
-= \\int\_0^1 \\frac{1}{x^2+1}\\dd{x}
+\$\$int\_0^1 int\_0^1 \\frac{x^2-y^2}{(x^2+y^2)^2}\\dd{y}\\dd{x}
+= int\_0^1 \\lreval\*{\\frac{y}{x^2+y^2}}\_0^1\\dd{x}
+= int\_0^1 \\frac{1}{x^2+1}\\dd{x}
 = \\frac{\\pi}{4}\$\$ で、$x$で先に積分すると
-\$\$\\int\_0^1 \\int\_0^1 \\frac{x^2-y^2}{(x^2+y^2)^2}\\dd{x}\\dd{y}
-= \\int\_0^1 \\lreval\*{\\frac{-x}{x^2+y^2}}\_0^1\\dd{y}
-= \\int\_0^1 \\frac{-1}{1+y^2}\\dd{x}
+\$\$int\_0^1 int\_0^1 \\frac{x^2-y^2}{(x^2+y^2)^2}\\dd{x}\\dd{y}
+= int\_0^1 \\lreval\*{\\frac{-x}{x^2+y^2}}\_0^1\\dd{y}
+= int\_0^1 \\frac{-1}{1+y^2}\\dd{x}
 = -\\frac{\\pi}{4}\$\$ となり積分順序の交換が行えない例となっている。
 これは$f$が$X$上で広義重積分可能でないことに起因しており、
 実際$X$の近似列として$D_n = [n^(- 1), 1] times \( 0, 1 \]$として取るのと$D'_n = \( 0, 1 \] times [n^(- 1), 1]$を取るのとで積分値が上記の通り異なっている。
@@ -644,13 +764,13 @@ $ f(x, y) = frac(x^2-y^2, (x^2+y^2)^2) $ の積分を考える。
 #block[
 $x = Phi (u)$は$u$が動く面積確定開集合$U$を$x$が動く面積確定開集合$X$に一対一に移す$C^1$級変換としてヤコビアン$det J Phi (u)$の値は全ての$u in U$で非零とする。
 この時、$X$上の連続関数$f(x)$に対して
-\$\$\\int\_X f(x)\\dd{x} = \\int\_U f(\\Phi(u))\\abs{\\det J\\Phi(u)}\\dd{u}\$\$
+\$\$int\_X f(x)\\dd{x} = int\_U f(\\Phi(u))\\abs{\\det J\\Phi(u)}\\dd{u}\$\$
 が成り立つ。
 
 ]
 #block[
 二次元の極座標変換$x = r cos theta, y = r sin theta$を考えると、
-$ integral.double_X f(x, y) ⅆ (x, y) = integral.double_U f(r cos theta, r sin theta) r ⅆ (r, theta) $
+$ integral.double_X f(x, y) dd((x, y)) = integral.double_U f(r cos theta, r sin theta) r ⅆ (r, theta) $
 が成り立つ。
 
 ]
