@@ -531,93 +531,117 @@ $
 ]
 
 == 変数変換の公式
-<変数変換の公式>
-#block[
-$x = Phi (u)$は$u$が動く開集合$U$を$x$が動く開集合$X$に一対一に移す$C^1$級変換としてヤコビアン$det J Phi (u)$の値は全ての$u in U$で非零とする。
-この時、$X$の面積確定有界閉部分集合$D$とその上の連続関数$f(x)$に対して
-\$\$\\label{e:cvcpt}
-int\_D f(x)\\dd{x} = int\_{\\Phi^{-1}(D)} f(\\Phi(u))\\abs{\\det J\\Phi(u)}\\dd{u}\$\$
-が成り立つ。
 
+#theorem([重積分の変数変換])[
+$x = Phi(u)$は$u$が動く開集合$U$を$x$が動く開集合$X$に一対一に移す$C^1$級変換としてヤコビアン$det J Phi(u)$の値は全ての$u in U$で非零とする。
+この時、$X$の面積確定有界閉部分集合$D$とその上の連続関数$f(x)$に対して
+$
+integral_D f(x) dd(x)
+= integral_(Phi^(-1) (D)) f(Phi(u)) abs(det J Phi(u)) dd(u)
+$ <e_cvcpt>
+が成り立つ。
 ]
-この定理の重要な点は$x = Phi (u)$と変数変換すると\$\\dd{x} = \\abs{\\det J\\Phi(u)}\\dd{u}\$と考えられるところである。
+
+この定理の重要な点は$x = Phi (u)$と変数変換すると$dd(x) = abs(det J Phi(u))dd(u)$と考えられるところである。
 一変数の置換積分の際にはなかった絶対値がついているのは積分の向きが重積分では考慮されていないためである。
 
-#block[
-二次元の一次変換$x = a u+b v, y = c u+d v$を考えると、ヤコビアン$a d-b c$が非零である限り
-\$\$\\iint\_X f(x, y)\\dd{(x, y)} = \\iint\_U f(a u+b v, c u+d v)\\abs{a d-b c}\\dd{(u, v)}\$\$
+#corollary([一次変換])[
+二次元の一次変換$x = a u+b v$, $y = c u+d v$を考えると、ヤコビアン$a d-b c$が非零である限り
+$
+integral.double_X f(x, y) dd((x, y))
+= integral.double_U f(a u+b v, c u+d v) abs(a d-b c) dd((u, v))
+$
 が成り立つ。
-
 ]
-#block[
-二次元の極座標変換$x = r cos theta, y = r sin theta$を考えると、
-$ integral.double_X f(x, y) dd((x, y)) = integral.double_U f(r cos theta, r sin theta) r ⅆ (r, theta) $
+
+#corollary([極座標変換])[
+二次元の極座標変換$x = r cos theta$, $y = r sin theta$を考えると、
+$
+integral.double_X f(x, y) dd((x, y))
+= integral.double_U f(r cos theta, r sin theta) r dd((r, theta))
+$
 が成り立つ。
-
 ]
+
 変数変換の公式の証明をするために次の補題を準備する。
 
-#block[
+#lemma[
 $D$を面積確定有界閉集合として$f$をその上の連続関数とする。
-この時、連続性の度合い$omega$が存在して次のようにできる。
-$P$を$D$の分割、つまり$D$の面積確定有界閉部分集合$E$の集合で、任意の$E_1, E_2 in P$に対して$E_1 sect E_2$は面積零集合で$union.big_(E in P) E = D$を満たすとする。
+この時、度合い関数$omega$が存在して次のようにできる。
+$P$を$D$の分割、つまり$D$の面積確定有界閉部分集合$E$の集合で、任意の$E_1, E_2 in P$, $E_1 eq.not E_2$に対して$E_1 sect E_2$は面積零集合で$union.big_(E in P) E = D$を満たすとする。
 この時、各$E$の任意の点$hat(x) in E$に対して
-\$\$\\abs{\\sum\_{E in P}f(\\hat{x})\\area(E)-int\_D f(x)\\dd{x}}
-<= \\omega(\\max\_{E in P}\\diag(E))\\area(D)\$\$ が成り立つ。
-ただし、\$\\diag(E)\$は$E$の二点の最大距離つまり
-\$\$\\diag(E) = \\sup\_{x, y in E}d(x, y)\$\$ を表す。
-
+$
+abs(sum_(E in P) f(hat(x)) area(E)-integral_D f(x) dd(x))
+<= omega(max_(E in P) diag(E)) area(D)
+$
+が成り立つ。
+ただし、$diag(E)$は$E$の二点の最大距離、つまり
+$diag(E) = sup_(x, y in E) d(x, y)$
+を表す。
 ]
+
 この補題は重積分の定義で分割を小さな矩形でしていたのをもっと一般の図形で分割しても積分値は変わらないことを意味している。
 
-#block[
- $f$は$D$上一様連続より連続性の度合いを$omega$とすると、
-\$\$\\begin{aligned}
-\\abs{\\sum\_{E in P}f(\\hat{x})\\area(E)-int\_D f(x)\\dd{x}}
-&= \\abs{\\sum\_{E in P}int\_E f(\\hat{x})\\dd{x}-\\sum\_{E in P}int\_E f(x)\\dd{x}}
-<= \\sum\_{E in P}int\_E \\abs{f(x)-f(\\hat{x})}\\dd{x} \\\\
-&<= \\sum\_{E in P}int\_E \\omega(\\diag(E))\\dd{x}
-% <= \\omega(\\max\_{E in P}\\diag(E))\\sum\_{E in P}int\_E \\dd{x}
-<= \\omega(\\max\_{E in P}\\diag(E))\\area(D)
-\\end{aligned}\$\$ である。
-
+#proof[
+$f$は$D$上一様連続より連続性の度合いを$omega$とすると、
+$
+abs(sum_(E in P) f(hat(x)) area(E)-integral_D f(x) dd(x))
+&= abs(sum_(E in P) int_E f(hat(x)) dd(x)-sum_(E in P) int_E f(x) dd(x))
+<= sum_(E in P) int_E abs(f(x)-f(hat(x))) dd(x) \
+&<= sum_(E in P) int_E omega(diag(E)) dd(x)
+<= omega(max_(E in P) diag(E)) area(D)
+$
+である。
 ]
-#block[
+
+#remark[
 ここでは$f$は連続関数として証明したが、より一般の重積分可能関数に対しても類似の結果を得ることができる（らしい）。
-
 ]
-#block[
-_重積分の変数変換の証明.]
-まず、$f$が定数関数$1$で$Phi (u)$がベクトル$u$に行列$A$をかける操作$Phi (u) = A u$として$D = Phi ([0, 1]^N)$の場合を考える。
-この時、\$A = \\mqty(a\_1 & \\cdots & a\_N)\$として、$D$は$N$個の$N$次元ベクトル$a_1, dots, a_N$が張る平行四辺形（の$N$次元版）であり、示すべき式は
-\$\$\\area(D) = \\abs{\\det A}\$\$ となる。 このことの証明は省略する。
-平行移動すれば$Phi (u) = A u+b$で$D$が有界閉矩形$R$の像の時も
-\$\$\\area(D) = \\abs{\\det A}\\area(R)\$\$ が成り立つことに注意する。
 
-次に一般の$C^1$級変換$x = Phi (u)$と$Phi^(- 1) (D)$が点$P_0 (u_1, dots, u_N)$を含み一辺の長さが$h > 0$の正方形（の$N$次元版）$R_(u, h) = [u_1, u_1+h] times dots times [u_N, u_N+h]$の場合について、
-\$\$\\lim\_{h \\to 0}\\frac{\\area(\\Phi(R\_{u, h}))}{\\area(R\_{u, h})} = \\abs{\\det J\\Phi(u)}\$\$
+#proof([重積分の変数変換の証明])[
+まず、$f$が定数関数$1$で$Phi(u)$がベクトル$u$に行列$A$をかける操作$Phi(u) = A u$として$D = Phi([0, 1]^N)$の場合を考える。
+この時、$A = mat(a_1, dots.c, a_N)$として、$D$は$N$個の$N$次元ベクトル$a_1, dots, a_N$が張る平行四辺形（の$N$次元版）であり、示すべき式は
+$
+area(D) = abs(det A)$
+となる。
+このことの証明は省略する。
+平行移動と拡大縮小すれば$Phi(u) = A u+b$で$D$が有界閉矩形$R$の像の時も
+$
+area(D) = abs(det A)area(R)
+$
+が成り立つことに注意する。
+
+次に一般の$C^1$級変換$x = Phi (u)$と$Phi^(-1) (D)$が点$P_0 (u_1, dots, u_N)$を含み一辺の長さが$h > 0$の正方形（の$N$次元版）$R_(u, h) = [u_1, u_1+h] times dots times [u_N, u_N+h]$の場合について、
+$
+lim_(h -> 0) area(Phi(R_(u, h)))/area(R_(u, h))
+= abs(det J Phi(u))
+$
 が成り立つことを示す。
-ただし、\$\\area(R\_{u, h}) = h^N\$であることに注意する。 TODO
+ただし、$area(R_(u, h)) = h^N$であることに注意する。
+TODO
 
-一般の$f$,
-$Phi$と$X$の面積確定有界閉部分集合$D$に対して#link(<e:cvcpt>)[\[e:cvcpt\]_を示す。
-ここで$u in D$についての関数\$f(\\Phi(u))\\abs{\\det J\\Phi(u)}\$は連続なので右辺の重積分は収束することに注意する。
-$n = 0, 1, 2, 3, dots$に対して、全空間$bb(R)^N$を一辺の長さが$h = 2^(- n)$の$N$次元正方形$R_(u, h)$
-($u = (h i_1, dots, h i_N)$,
-$i_1, dots, i_N in bb(Z)$)に分割する。
-$P_n$を$U$に含まれるような正方形$R_u = R_(u, h)$全体として、$P_n$の正方形$R_u$を$Phi$で移した図形$E_x$
-($x = Phi (u)$)の集合を$Q_n$とおく。
-この時、$tilde(f) (x) = f(x) 1_D (x)$として$n -> oo$において
-\$\$\\sum\_{E\_x in Q\_n} \\tilde{f}(x)\\area(E\_x) \\to int\_D f(x)\\dd{x},
-\\quad \\sum\_{R\_u in P\_n} \\tilde{f}(\\Phi(u))\\abs{\\det J\\Phi(u)}\\area(R\_u) \\to int\_{\\Phi^{-1}(D)} f(\\Phi(u))\\abs{\\det J\\Phi(u)}\\dd{u}\$\$
-であることに注意する。 ここで、 \$\$\\begin{aligned}
-&\\abs{\\sum\_{E\_x in Q\_n} f(x)\\area(E\_x)-\\sum\_{R\_u in P\_n} f(\\Phi(u))\\abs{\\det J\\Phi(u)}\\area(R\_u)} \\\\
-&\\quad <= \\sum\_{R\_u in P\_n} \\abs{f(\\Phi(u))}\\abs{\\area(\\Phi(R\_u))-\\abs{\\det J\\Phi(u)}\\area(R\_u)} \\\\
-&\\quad <= \\sum\_{R\_u in P\_n} \\abs{f(\\Phi(u))}\\abs{\\det J\\Phi(u)}\\area(R\_u)\\omega(h)
-\\end{aligned}\$\$ なので、
-$n -> oo$とすると$h -> 0$であり$omega (h) -> 0$より等式#link(<e:cvcpt>)[\[e:cvcpt\]_が得られる。
-
+一般の$f$, $Phi$と$X$の面積確定有界閉部分集合$D$に対して@e_cvcpt を示す。
+ここで$u in D$についての関数$f(Phi(u))abs(det J Phi(u))$は連続なので右辺の重積分は収束することに注意する。
+$n = 0, 1, 2, 3, dots$に対して、全空間$RR^N$を一辺の長さが$h = 2^(-n)$の$N$次元正方形$R_(u, h)$ ($u = (h i_1, dots, h i_N)$, $i_1, dots, i_N in ZZ$)に分割する。
+$P_n$を$U$に含まれるような正方形$R_u = R_(u, h)$全体として、$P_n$の正方形$R_u$を$Phi$で移した図形$E_x$ ($x = Phi(u)$)の集合を$Q_n$とおく。
+この時、$tilde(f)(x) = f(x) 1_D (x)$として$n -> oo$において
+$
+sum_(E_x in Q_n) tilde(f)(x) area(E_x)
+-> integral_D f(x) dd(x),
+quad sum_(R_u in P_n) tilde(f)(Phi(u))abs(det J Phi(u))area(R_u)
+-> integral_(Phi^(-1) (D)) f(Phi(u))abs(det J Phi(u)) dd(u)
+$
+であることに注意する。
+ここで、
+$
+&abs(sum_(E_x in Q_n) f(x) area(E_x)-sum_(R_u in P_n) f(Phi(u))abs(det J Phi(u))area(R_u)) \
+&quad <= sum_(R_u in P_n) abs(f(Phi(u)))abs(area(Phi(R_u))-abs(det J Phi(u))area(R_u)) \
+&quad <= sum_(R_u in P_n) abs(f(Phi(u)))abs(det J Phi(u))area(R_u)omega(h)
+$
+なので、
+$n -> oo$とすると$h -> 0$であり$omega (h) -> 0$より等式@e_cvcpt が得られる。
 ]
+
 == 広義重積分
 <広義重積分>
 $N$次元有界集合$D$上の有界関数$f$で定義された重積分$integral_D f(x) dd(x)$であるが、
