@@ -1,4 +1,12 @@
 
+#import "deps/theorem.typ": thmrules, theorem, lemma, proposition, corollary, definition, example, remark, proof
+#show: thmrules.with()
+
+#import "@preview/physica:0.9.4": dd
+#let area = $op("area")$
+#let vol = $op("vol")$
+#let diag = $op("diag")$
+
 = 重積分
 
 == 重積分
@@ -217,8 +225,8 @@ $
 分割$P$の小矩形$C in P$に対して$partial X$と交わりを持つようなもの全体を$Q$と、$X$に包含されるもの全体を$macron(P)$とおくと、
 $
 sum_(C in P) (sup_C f 1_X-inf_C f 1_X) area(C)
-<= sum_(C in Q) M area(C)+sum_(C in macron(P)) (sup_C f-inf_C f) area(C)
-<= M sum_(C in P) sup 1_(partial X) area(C)+omega(abs(P)) area(X)
+&<= sum_(C in Q) M area(C)+sum_(C in macron(P)) (sup_C f-inf_C f) area(C) \
+&<= M sum_(C in P) sup 1_(partial X) area(C)+omega(abs(P)) area(X)
 $
 が成り立つ。
 ここで面積確定有界閉集合$X$の境界$partial X$は面積零集合なので、分割$P$を細かくするとこれは$0$に収束するので、
@@ -390,7 +398,7 @@ $
 $
 integral (1/y e^(y^2)-2 1/y^3 e^(y^2)+2 1/y^5 e^(y^2)-2 1/y^5) dd(y)
 = (e^(y^2) y^2-e^(y^2)+1)/(2 y^4)
-= 1/4+1/6 y^2+cdots
+= 1/4+1/6 y^2+dots
 $
 がわかるので、最初の重積分は
 $
@@ -516,8 +524,8 @@ $
 これは縦線集合あるいは横線集合として
 $
 B
-= { (x, y, z) in RR^3 mid(|) x^2+y^2 <= 1, -sqrt(1-x^2-y^2) <= z <= +sqrt(1-x^2-y^2) }
-= { (x, y, z) in RR^3 mid(|) -1 <= z <= +1, x^2+y^2 <= 1-z^2 }
+&= { (x, y, z) in RR^3 mid(|) x^2+y^2 <= 1, -sqrt(1-x^2-y^2) <= z <= +sqrt(1-x^2-y^2) } \
+&= { (x, y, z) in RR^3 mid(|) -1 <= z <= +1, x^2+y^2 <= 1-z^2 }
 $
 として表される。
 そのため半径$r$の円板を\$D(r) =  { (x, y) in  RR^2 mid(|) x^2+y^2 <= r^2 }\$として、
@@ -586,9 +594,9 @@ $diag(E) = sup_(x, y in E) d(x, y)$
 $f$は$D$上一様連続より連続性の度合いを$omega$とすると、
 $
 abs(sum_(E in P) f(hat(x)) area(E)-integral_D f(x) dd(x))
-&= abs(sum_(E in P) int_E f(hat(x)) dd(x)-sum_(E in P) int_E f(x) dd(x))
-<= sum_(E in P) int_E abs(f(x)-f(hat(x))) dd(x) \
-&<= sum_(E in P) int_E omega(diag(E)) dd(x)
+&= abs(sum_(E in P) integral_E f(hat(x)) dd(x)-sum_(E in P) integral_E f(x) dd(x))
+<= sum_(E in P) integral_E abs(f(x)-f(hat(x))) dd(x) \
+&<= sum_(E in P) integral_E omega(diag(E)) dd(x)
 <= omega(max_(E in P) diag(E)) area(D)
 $
 である。
@@ -741,7 +749,7 @@ $X$上の局所重積分可能関数$f$に対して以下の条件は同値で�
 + $abs(f)$は$X$上で広義重積分可能である。
 + $X$のある近似列$(D_n)$が存在して、
   $
-  sup_n int_(D_n) abs(f(x)) dd(x) < oo
+  sup_n integral_(D_n) abs(f(x)) dd(x) < oo
   $
   が成り立つ。
 ]
