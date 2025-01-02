@@ -1,4 +1,11 @@
 
+#import "deps/theorem.typ": thmrules, theorem, lemma, proposition, corollary, definition, example, remark, proof
+#show: thmrules.with()
+
+#import "@preview/physica:0.9.4": dd
+#let area = $op("area")$
+#let vol = $op("vol")$
+
 = 種々の計算
 
 == 正測体と正軸体の体積
@@ -264,13 +271,13 @@ I
 $
 つまり
 $
-integral_0^infty e^(-a x) sinc x dd(x) = pi/2-arctan a
+integral_0^oo e^(-a x) sinc x dd(x) = pi/2-arctan a
 $
 を得る。
 ここで$e^(-a x) sinc x$は$(a, x) in \[0, oo\) times RR$上の連続関数で、$abs(sinc x) <= 1$よりワイエルシュトラスのM判定法から左辺の広義積分は$a in \[0, oo\)$について一様収束するので、収束先も連続関数であることから
 $
-lim_(a -> 0) integral_0^infty e^(-a x) sinc x dd(x)
-= integral_0^infty sinc x dd(x)
+lim_(a -> 0) integral_0^oo e^(-a x) sinc x dd(x)
+= integral_0^oo sinc x dd(x)
 = pi/2
 $
 を得る。
@@ -312,7 +319,7 @@ abs(integral_0^oo e^(-t y)/(1+y^2) (y sin t+cos t) dd(y))
 $
 であるので、 ディリクレ積分とその収束の速さ
 $
-integral_0^infty sinc x dd(x) = pi/2,
+integral_0^oo sinc x dd(x) = pi/2,
 quad abs(integral_0^t sinc x dd(x)-pi/2) <= 1/t
 $
 が正当化される。
@@ -373,7 +380,7 @@ abs(2/sqrt(pi) integral_0^oo e^(-b y^2)/(1+y^4) (y^2 sin b+cos b) dd(y))
 $
 なので、フレネル積分とその収束の速さ
 $
-integral_0^infty (sin x)/sqrt(x) dd(x) = sqrt(pi/2),
+integral_0^oo (sin x)/sqrt(x) dd(x) = sqrt(pi/2),
 quad
 abs(integral_0^b (sin x)/sqrt(x) dd(x)-sqrt(pi/2)) <= 1/sqrt(b)
 $
