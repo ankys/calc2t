@@ -200,73 +200,121 @@ Gamma(x) Gamma(y)
 ]
 
 == ディリクレ積分
-<ディリクレ積分>
+
 条件収束するシンク関数の広義積分の値は
-\$\$int\_{-infty}^{+infty} \\sinc x\\dd{x}
-= int\_{-infty}^{+infty} \\frac{\\sin x}{x}\\dd{x}
-= \\pi,
-\\quad
-int\_0^infty \\sinc x\\dd{x}
-= int\_0^infty \\frac{\\sin x}{x}\\dd{x}
-= \\frac{\\pi}{2}\$\$ であり、_ディリクレ積分_として知られている。
+$
+integral_(-oo)^(+oo) sinc x dd(x)
+= integral_(-oo)^(+oo) (sin x)/x dd(x)
+= pi,
+quad
+integral_0^oo sinc x dd(x)
+= integral_0^oo (sin x)/x dd(x)
+= pi/2
+$
+であり、_ディリクレ積分_として知られている。
 ここではディリクレ積分の値を一様収束を使った議論で導出する。
 
-まず、$x eq.not 0$に対して \$\$int\_0^1 \\cos x y\\dd{y}
-= \\lreval\*{\\frac{\\sin x y}{x}}\_0^1
-= \\frac{\\sin x}{x}
-= \\sinc x\$\$ であることに注意する。
-\$\\sinc x = 0\$なので、さらにこの式は$x = 0$でも成立する。
-そのためディリクレ積分は累次積分 \$\$int\_0^infty \\sinc x\\dd{x}
-= int\_0^infty int\_0^1 \\cos x y\\dd{y}\\dd{x}\$\$
-となることから積分の順序交換をしたいが、この$\[ 0, oo \) times [0, 1]$上の広義積分は絶対収束しないので直接は利用できない。
-そこで常套手段として$x arrow.r oo$で早く減少する$e^(- a x)$
-($a > 0$)を付け加えた重積分
-$ I = integral.double_(\[ 0, oo \) times [0, 1]) e^(- a x) cos x y dd((x, y)) $
-を代わりに考える。 この積分は
-\$\$\\iint\_{\[0, infty)\\times\[0, 1\]} abs(e^{-a x}\\cos x y}\\dd{(x, y)}
-<= \\iint\_{\[0, infty)\\times\[0, 1\]} e^{-a x}\\dd{(x, y)}
-= int\_0^infty e^{-a x}\\dd{x}
-= \\frac{1}{a}
-\< infty\$\$ なので、広義積分可能である。
+まず、$x eq.not 0$に対して
+$
+integral_0^1 cos x y dd(y)
+= [(sin x y)/x]_0^1
+= (sin x)/x
+= sinc x
+$
+であることに注意する。
+さらにこの式は$x = 0$でも、$sinc x = 0$なので、成立する。
+そのためディリクレ積分は累次積分
+$
+integral_0^oo sinc x dd(x)
+= integral_0^oo integral_0^1 cos x y dd(y) dd(x)
+$
+となることから積分の順序交換をしたいが、この積分領域$\[0, oo\) times [0, 1]$上の広義積分は絶対収束しないので直接は利用できない。
+そこで常套手段として$x -> oo$で早く減少する$e^(-a x)$ ($a > 0$)を付け加えた重積分
+$
+I = integral.double_(\[0, oo\) times [0, 1]) e^(-a x) cos x y dd((x, y))
+$
+を代わりに考える。
+この積分は
+$
+integral.double_(\[0, oo\) times [0, 1]) abs(e^(-a x) cos x y) dd((x, y))
+<= integral.double_(\[0, oo\) times [0, 1]) e^(-a x) dd((x, y))
+= integral_0^oo e^(-a x) dd(x)
+= 1/a
+< oo
+$
+なので、広義積分可能である。
 先に$x$で積分することを考えると$b in [0, 1]$に対して
-$ integral e^(- a x) cos b x dd(x) =-1/a e^(- a x) cos b x-b/a integral e^(- a x) sin b x dd(x) =-1/a e^(- a x) cos b x+b/a^2 e^(- a x) sin b x-b^2/a^2 integral e^(- a x) cos b x dd(x) $
+$
+integral e^(-a x) cos b x dd(x)
+= -1/a e^(-a x) cos b x-b/a integral e^(-a x) sin b x dd(x)
+= -1/a e^(-a x) cos b x+b/a^2 e^(-a x) sin b x-b^2/a^2 integral e^(-a x) cos b x dd(x)
+$
 より
-$ integral e^(- a x) cos b x dd(x) =-frac(a, a^2+b^2) e^(- a x) cos b x+frac(b, a^2+b^2) e^(- a x) sin b x+C $
+$
+integral e^(-a x) cos b x dd(x)
+= -a/(a^2+b^2) e^(-a x) cos b x+b/(a^2+b^2) e^(-a x) sin b x+C
+$
 なので、
-$ I = integral_0^1 integral_0^oo e^(- a x) cos x y dd(x) dd(y) = integral_0^1 frac(a, a^2+y^2) dd(y) = arctan 1/a = pi/2-arctan a, $
+$
+I
+= integral_0^1 integral_0^oo e^(-a x) cos x y dd(x) dd(y)
+= integral_0^1 a/(a^2+y^2) dd(y)
+= arctan 1/a
+= pi/2-arctan a,
+$
 つまり
-\$\$int\_0^infty e^{-a x}\\sinc x\\dd{x} = \\frac{\\pi}{2}-\\arctan a\$\$
+$
+integral_0^infty e^(-a x) sinc x dd(x) = pi/2-arctan a
+$
 を得る。
-ここで\$e^{-a x}\\sinc x\$は$(a, x) in \[ 0, oo \) times RR$上の連続関数で、\$abs(\\sinc x} <= 1\$よりワイエルシュトラスのM判定法から左辺の広義積分は$a in \[ 0, oo \)$について一様収束するので、収束先も連続関数であることから
-\$\$\\lim\_{a \\to 0}int\_0^infty e^{-a x}\\sinc x\\dd{x}
-= int\_0^infty \\sinc x\\dd{x}
-= \\frac{\\pi}{2}\$\$ を得る。
+ここで$e^(-a x) sinc x$は$(a, x) in \[0, oo\) times RR$上の連続関数で、$abs(sinc x) <= 1$よりワイエルシュトラスのM判定法から左辺の広義積分は$a in \[0, oo\)$について一様収束するので、収束先も連続関数であることから
+$
+lim_(a -> 0) integral_0^infty e^(-a x) sinc x dd(x)
+= integral_0^infty sinc x dd(x)
+= pi/2
+$
+を得る。
 
 上記の方法は$a, x, y$という三つの変数の組み合わせをうまく取り替えることでディリクレ積分を計算したが、$x > 0$に対して
-$ integral_0^oo e^(- x y) dd(y) = 1/x $
+$
+integral_0^oo e^(-x y) dd(y) = 1/x
+$
 であることに注目するとディリクレ積分は累次積分
-$ integral_0^oo integral_0^oo e^(- x y) sin x dd(y) dd(x) $
-の積分の順序交換に帰着される。 これは$t > 0$を固定すると
-\$\$int\_0^t int\_0^infty abs(e^{-x y}\\sin x}\\dd{y}\\dd{x}
-= int\_0^t \\frac{1}{x}abs(\\sin x}\\dd{x}
-<= int\_0^t \\dd{x}
+$
+integral_0^oo integral_0^oo e^(-x y) sin x dd(y) dd(x)
+$
+の積分の順序交換に帰着される。
+これは$t > 0$を固定すると
+$
+integral_0^t integral_0^oo abs(e^(-x y) sin x) dd(y) dd(x)
+= integral_0^t 1/x abs(sin x) dd(x)
+<= integral_0^t dd(x)
 = t
-\< infty\$\$ より、積分の順序交換により \$\$\\begin{aligned}
-int\_0^t int\_0^infty e^{-x y}\\sin x\\dd{y}\\dd{x}
-&= int\_0^infty int\_0^t e^{-x y}\\sin x\\dd{x}\\dd{y}
-= int\_0^infty \\lreval\*{-\\frac{e^{-x y}}{1+y^2}(y\\sin x+\\cos x)}\_{x = 0}^t\\dd{y} \\\\
-&= int\_0^infty \\qty(\\frac{1}{1+y^2}-\\frac{e^{-t y}}{1+y^2}(y\\sin t+\\cos t))\\dd{y} \\\\
-&= \\frac{\\pi}{2}-int\_0^infty \\frac{e^{-t y}}{1+y^2}(y\\sin t+\\cos t)\\dd{y}
-\\end{aligned}\$\$
-あとは$t arrow.r oo$として最後の積分項が$0$に収束することを示す。 実際、
-\$\$abs(int\_0^infty \\frac{e^{-t y}}{1+y^2}(y\\sin t+\\cos t)\\dd{y}}
-<= int\_0^infty \\frac{e^{-t y}}{1+y^2}abs(y\\sin t+\\cos t}\\dd{y}
-<= int\_0^infty \\frac{e^{-t y}}{\\sqrt{1+y^2}}\\dd{y}
-<= int\_0^infty e^{-t y}\\dd{y}
-= \\frac{1}{t}
-\\to 0\$\$ であるので、 ディリクレ積分とその収束の速さ
-\$\$int\_0^infty \\sinc x\\dd{x} = \\frac{\\pi}{2},
-\\quad abs(int\_0^t \\sinc x\\dd{x}-\\frac{\\pi}{2}} <= \\frac{1}{t}\$\$
+< oo
+$
+より、積分の順序交換により
+$
+integral_0^t integral_0^oo e^(-x y) sin x dd(y) dd(x)
+&= integral_0^oo integral_0^t e^(-x y) sin x dd(x) dd(y)
+= integral_0^oo [-e^(-x y)/(1+y^2) (y sin x+cos x)]_(x = 0)^t dd(y) \
+&= integral_0^oo (1/(1+y^2)-e^(-t y)/(1+y^2) (y sin t+cos t)) dd(y) \
+&= pi/2-integral_0^oo e^(-t y)/(1+y^2) (y sin t+cos t) dd(y)
+$
+あとは$t -> oo$として最後の積分項が$0$に収束することを示す。
+実際、
+$
+abs(integral_0^oo e^(-t y)/(1+y^2) (y sin t+cos t) dd(y))
+<= integral_0^oo e^(-t y)/(1+y^2) abs(y sin t+cos t) dd(y)
+<= integral_0^oo e^(-t y)/sqrt(1+y^2) dd(y)
+<= integral_0^oo e^(-t y) dd(y)
+= 1/t
+-> 0
+$
+であるので、 ディリクレ積分とその収束の速さ
+$
+integral_0^infty sinc x dd(x) = pi/2,
+quad abs(integral_0^t sinc x dd(x)-pi/2) <= 1/t
+$
 が正当化される。
 
 == フレネル積分
