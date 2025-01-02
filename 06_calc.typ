@@ -318,43 +318,73 @@ $
 が正当化される。
 
 == フレネル積分
-<フレネル積分>
+
 次の条件収束する広義積分とその値
-$ integral_(- oo)^(+ oo) sin t^2 dd(t) = integral_(- oo)^(+ oo) cos t^2 dd(t) = sqrt(pi/2), quad integral_0^oo sin t^2 dd(t) = integral_0^oo cos t^2 dd(t) = 1/2 sqrt(pi/2) $
-を_フレネル積分_という。 $x = t^2$と置換することでこの積分は
-$ integral_0^oo frac(sin x, sqrt(x)) dd(x) = integral_0^oo frac(cos x, sqrt(x)) dd(x) = sqrt(pi/2) $
+$
+integral_(-oo)^(+oo) sin t^2 dd(t)
+= integral_(-oo)^(+oo) cos t^2 dd(t)
+= sqrt(pi/2),
+quad
+integral_0^oo sin t^2 dd(t)
+= integral_0^oo cos t^2 dd(t)
+= 1/2 sqrt(pi/2)
+$
+を_フレネル積分_という。
+$x = t^2$と置換することでこの積分は
+$
+integral_0^oo (sin x)/sqrt(x) dd(x)
+= integral_0^oo (cos x)/sqrt(x) dd(x)
+= sqrt(pi/2)
+$
 に帰着される。
 ここではこのフレネル積分の値をディリクレ積分の値の二つ目の導出法を参考に計算する。
 
 まず、ガウス積分により$x > 0$に対して
-$ integral_0^oo e^(- x y^2) dd(y) = sqrt(pi)/2 1/sqrt(x) $ であるから
-$ integral_0^oo frac(sin x, sqrt(x)) dd(x) = 2/sqrt(pi) integral_0^oo integral_0^oo e^(- x y^2) sin x dd(y) dd(x) $
-となる。 これはやはり$b > 0$を固定すると
-\$\$\\frac{2}{\\sqrt{\\pi}}int\_0^b int\_0^infty abs(e^{-x y^2}\\sin x}\\dd{y}\\dd{x}
-= int\_0^b \\frac{abs(\\sin x}}{\\sqrt{x}}\\dd{x}
-<= int\_0^b \\sqrt{x}\\dd{x}
-= \\frac{2}{3}b\\sqrt{b}^3
-\< infty\$\$ なので、積分の順序交換により \$\$\\begin{aligned}
-int\_0^b \\frac{\\sin x}{\\sqrt{x}}\\dd{x}
-&= \\frac{2}{\\sqrt{\\pi}}int\_0^b int\_0^infty e^{-x y^2}\\sin x\\dd{y}\\dd{x}
-= \\frac{2}{\\sqrt{\\pi}}int\_0^infty int\_0^b e^{-x y^2}\\sin x\\dd{x}\\dd{y} \\\\
-&= \\frac{2}{\\sqrt{\\pi}}int\_0^infty \\lreval\*{-\\frac{e^{-x y^2}}{1+y^4}(y^2\\sin x+\\cos x)}\_{x = 0}^b\\dd{y}
-= \\frac{2}{\\sqrt{\\pi}}int\_0^infty \\qty(\\frac{1}{1+y^4}-\\frac{e^{-b y^2}}{1+y^4}(y^2\\sin b+\\cos b))\\dd{y} \\\\
-&= \\sqrt{\\frac{\\pi}{2}}-\\frac{2}{\\sqrt{\\pi}}int\_0^infty \\frac{e^{-b y^2}}{1+y^4}(y^2\\sin b+\\cos b)\\dd{y}.
-\\end{aligned}\$\$ ここで
-\$\$abs(\\frac{2}{\\sqrt{\\pi}}int\_0^infty \\frac{e^{-b y^2}}{1+y^4}(y^2\\sin b+\\cos b)\\dd{y}}
-<= \\frac{2}{\\sqrt{\\pi}}int\_0^infty e^{-b y^2}\\dd{y}
-<= \\frac{1}{\\sqrt{b}}\$\$ なので、フレネル積分とその収束の速さ
-\$\$int\_0^infty \\frac{\\sin x}{\\sqrt{x}}\\dd{x}
-= \\sqrt{\\frac{\\pi}{2}},
-\\quad
-abs(int\_0^b \\frac{\\sin x}{\\sqrt{x}}\\dd{x}-\\sqrt{\\frac{\\pi}{2}}}
-<= \\frac{1}{\\sqrt{b}}\$\$ を得る。
+$
+integral_0^oo e^(-x y^2) dd(y) = sqrt(pi)/2 1/sqrt(x)
+$
+であるから
+$
+integral_0^oo (sin x)/sqrt(x) dd(x)
+= 2/sqrt(pi) integral_0^oo integral_0^oo e^(-x y^2) sin x dd(y) dd(x)
+$
+となる。
+これはやはり$b > 0$を固定すると
+$
+2/sqrt(pi) integral_0^b integral_0^oo abs(e^(-x y^2) sin x) dd(y) dd(x)
+= integral_0^b abs(sin x)/sqrt(x) dd(x)
+<= integral_0^b sqrt(x) dd(x)
+= 2/3 sqrt(b)^3
+$
+なので、積分の順序交換により
+$
+integral_0^b (sin x)/sqrt(x) dd(x)
+&= 2/sqrt(pi) integral_0^b integral_0^oo e^(-x y^2) sin x dd(y) dd(x)
+= 2/sqrt(pi) integral_0^oo integral_0^b e^(-x y^2) sin x dd(x) dd(y) \
+&= 2/sqrt(pi) integral_0^oo [-e^(-x y^2)/(1+y^4) (y^2 sin x+cos x)]_(x = 0)^b dd(y)
+= 2/sqrt(pi) integral_0^oo (1/(1+y^4)-e^(-b y^2)/(1+y^4) (y^2 sin b+cos b)) dd(y) \
+&= sqrt(pi/2)-2/sqrt(pi) integral_0^oo e^(-b y^2)/(1+y^4) (y^2 sin b+cos b) dd(y)
+$
+ここで
+$
+abs(2/sqrt(pi) integral_0^oo e^(-b y^2)/(1+y^4) (y^2 sin b+cos b) dd(y))
+<= 2/sqrt(pi) integral_0^oo e^(-b y^2) dd(y)
+= 1/sqrt(b)
+$
+なので、フレネル積分とその収束の速さ
+$
+integral_0^infty (sin x)/sqrt(x) dd(x) = sqrt(pi/2),
+quad
+abs(integral_0^b (sin x)/sqrt(x) dd(x)-sqrt(pi/2)) <= 1/sqrt(b)
+$
+を得る。
 
 == バーゼル問題
-<バーゼル問題>
+
 バーゼル問題とは正の整数の自乗の逆数の和
-$ I = sum_(n = 1)^oo 1/n^2 = 1/1+1/4+1/9+dots.h.c $
+$
+I = sum_(n = 1)^oo 1/n^2 = 1/1+1/4+1/9+dots
+$
 を考える問題である。
 答えから述べるとこの級数は収束してその値は$pi^2/6$である。
 バーゼル問題を解く方法は様々なものが知られているが、ここではこれまでの知識でこの問題に取り組んでみる。
