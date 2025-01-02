@@ -1,4 +1,10 @@
 
+#import "deps/theorem.typ": thmrules, theorem, lemma, proposition, corollary, definition, example, remark, proof
+#show: thmrules.with()
+
+#import "@preview/physica:0.9.4": dd, dv, eval
+#let area = $op("area")$
+
 = 関数列
 
 == 各点収束と一様収束
@@ -81,7 +87,7 @@ sup_(x in X) abs(f(x, y_n)-f(x, b))
 = 0
 $
 なので、@t_cptfconv より$(x_n)$が収束しなくても$sup_(x in X) abs(f(x, y_n)-f(x, b)) -> 0$である。
-あとは命題@t_seqcontより$y -> b$で$sup_(x in X) abs(f(x, y)-f(x, b)) -> 0$がわかる。
+あとは@t_seqcont より$y -> b$で$sup_(x in X) abs(f(x, y)-f(x, b)) -> 0$がわかる。
 ]
 
 関数列に対して級数をとったものが関数項級数である。

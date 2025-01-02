@@ -31,7 +31,7 @@
 #include "02_space.typ"
 #include "03_pdiff.typ"
 #include "04_iint.typ"
-// #include "05_functions1.typ"
+#include "05_fseq.typ"
 // #include "06_differential.typ"
 // #include "07_integral.typ"
 // #include "08_series.typ"
