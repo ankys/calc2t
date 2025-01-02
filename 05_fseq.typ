@@ -240,102 +240,146 @@ $
 ]
 
 == 極限と積分の順序交換
-<極限と積分の順序交換>
+
 関数列や関数族、関数項級数は一様収束の下で積分との順序交換ができる。
 
-#block[
+#theorem([極限と積分の交換])[
 面積確定集合$X$に対して以下が成り立つ。
 
 - $(f_n)$を$X$上の積分可能な関数の列とする。
-  ここで$(f_n)$がある関数$f = lim_n f_n$に$X$上一様収束するとき、$f$も$X$上積分可能で
-  $ integral_X f(x) ⅆ x = integral_X lim_n f_n (x) ⅆ x = lim_n integral_X f_n (x) ⅆ x $
+  ここで$(f_n)$がある関数$f = lim_n f_n$に$X$上一様収束するとき、
+  $f$も$X$上積分可能で
+  $
+  integral_X f(x) dd(x)
+  = integral_X lim_n f_n (x) dd(x)
+  = lim_n integral_X f_n (x) dd(x)
+  $
   が成り立つ。
-
 - $f(x, y)$を点$b$の近くの点$y$に対して$x in X$で積分可能な関数を対応させる関数の族とする。
-  ここで$f(x, y)$が$y -> b$で$X$上一様収束するとき、$l(x) = lim_(y -> b) f(x, y)$も$X$上積分可能で
-  $ integral_X l(x) ⅆ x = integral_X lim_(y -> b) f(x, y) ⅆ x = lim_(y -> b) integral_X f(x, y) ⅆ x $
+  ここで$f(x, y)$が$y -> b$で$X$上一様収束するとき、
+  $l(x) = lim_(y -> b) f(x, y)$も$X$上積分可能で
+  $
+  integral_X l(x) dd(x)
+  = integral_X lim_(y -> b) f(x, y) dd(x)
+  = lim_(y -> b) integral_X f(x, y) dd(x)
+  $
   が成り立つ。
-
 - $(f_n)$を$X$上の積分可能な関数の列とする。
-  ここで関数項級数$sum_n f_n (x)$が$X$上一様収束するとき、$F (x) = sum_n f_n (x)$も$X$上積分可能で
-  $ integral_X F (x) ⅆ x = integral_X sum_n f_n (x) ⅆ x = sum_n integral_X f_n (x) ⅆ x $
+  ここで関数項級数$sum_n f_n (x)$が$X$上一様収束するとき、
+  $F(x) = sum_n f_n (x)$も$X$上積分可能で
+  $
+  integral_X F(x) dd(x)
+  = integral_X sum_n f_n (x) dd(x)
+  = sum_n integral_X f_n (x) dd(x)
+  $
   が成り立つ。
-
 ]
+
 最後の関数項級数に対する定理はしばしば項別積分と呼ばれる。
 
-#block[
-最初の関数列に対してのみ示す。 差を評価すると
-\$\$abs(int\_X f\_n(x)\\dd{x}-int\_X f(x)\\dd{x}}
-<= int\_X sup_(x in X}abs(f\_n(x)-f(x)}\\dd{x}
-= \\norm{f\_n-f}\\area(X)
--> 0.\$\$ よって定理の内容が従う。
-
+#proof[
+最初の関数列に対してのみ示す。
+差を評価すると
+$
+abs(integral_X f_n(x) dd(x)-integral_X f(x) dd(x))
+<= integral_X sup_(x in X) abs(f_n(x)-f(x)) dd(x)
+= norm(f_n-f) area(X)
+-> 0.
+$
+よって定理の内容が従う。
 ]
+
 == 極限と微分の順序交換
-<極限と微分の順序交換>
+
 微分積分学の基本定理より微分と積分はつながっている関係で、極限と積分の交換の内容をもとに極限と微分の交換を示すことができる。
 
-#block[
+#theorem([極限と微分の交換])[
 開区間$X$に対して以下が成り立つ。
 
 - $(f_n)$を$X$上の$C^1$級関数の列とする。
-  ここで$(f_n ')$がある関数に$X$上一様収束し$f_n (a)$が収束するような点$a$が存在するとき、$(f_n)$は$X$上各点収束し$f = lim_n f_n$も$X$上微分可能で
-  \$\$f\'(x) = \\dv{x}(\\lim\_n f\_n(x)) = \\lim\_n f\_n\'(x)\$\$
+  ここで$(f_n ')$がある関数に$X$上一様収束し$f_n (a)$が収束するような点$a$が存在するとき、
+  $(f_n)$は$X$上各点収束し$f = lim_n f_n$も$X$上微分可能で
+  $
+  f'(x) = dv(, x)(lim_n f_n (x)) = lim_n f_n '(x)
+  $
   が成り立つ。
-
 - $f(x, y)$を点$b$の近くの点$y$に対して$x in X$で$C^1$級関数を対応させる関数の族とする。
-  ここで$f_x (x, y)$が$y -> b$で$X$上一様収束し$f(a, y)$が収束するような点$a$が存在するとき、$f(x, y)$は$X$上各点収束し$l(x) = lim_(y -> b) f(x, y)$も$X$上微分可能で
-  \$\$l\'(x) = \\dv{x}(\\lim\_{y -> b} f(x, y)) = \\lim\_{y -> b} f\_x(x, y)\$\$
+  ここで$f_x (x, y)$が$y -> b$で$X$上一様収束し$f(a, y)$が収束するような点$a$が存在するとき、
+  $f(x, y)$は$X$上各点収束し$l(x) = lim_(y -> b) f(x, y)$も$X$上微分可能で
+  $
+  l'(x) = dv(, x)(lim_(y -> b) f(x, y)) = lim_(y -> b) f_x (x, y)
+  $
   が成り立つ。
-
 - $(f_n)$を$X$上の$C^1$級関数の列とする。
-  ここで関数項級数$sum_n f_n' (x)$が$X$上一様収束し$sum_n f_n (a)$が収束するような点$a$が存在するとき、$sum_n f_n (x)$は$X$上各点収束し$F (x) = sum_n f_n (x)$も$X$上微分可能で
-  \$\$F\'(x) = \\dv{x}(sum_n f\_n(x)) = sum_n f\_n\'(x)\$\$
+  ここで関数項級数$sum_n f_n' (x)$が$X$上一様収束し$sum_n f_n (a)$が収束するような点$a$が存在するとき、
+  $sum_n f_n (x)$は$X$上各点収束し$F(x) = sum_n f_n (x)$も$X$上微分可能で
+  $
+  F'(x) = dv(, x)(sum_n f_n (x)) = sum_n f_n' (x)
+  $
   が成り立つ。
-
 ]
+
 最後の関数項級数に対する定理はしばしば項別微分と呼ばれる。
 
-#block[
-最初の関数列に対してのみ示す。 $x in X$を固定する。
+#proof[
+最初の関数列に対してのみ示す。
+$x in X$を固定する。
 微分積分学の基本定理より
-$ f_n (x) = integral_a^x f_n' (x) ⅆ x+f_n (a) . $
-仮定より右辺は収束するので、
-$ lim_n f_n (x) = lim_n integral_a^x f_n' (x) ⅆ x+lim_n f_n (a) = integral_a^x lim_n f_n' (x) ⅆ x+lim_n f_n (a) . $
+$
+f_n (x) = integral_a^x f_n' (x) dd(x)+f_n (a).
+$
+仮定より$n$についての極限で右辺は収束するので、
+$
+lim_n f_n (x)
+= lim_n integral_a^x f_n' (x) dd(x)+lim_n f_n (a)
+= integral_a^x lim_n f_n' (x) dd(x)+lim_n f_n (a).
+$
 この両辺を微分して
-\$\$\\dv{x}(\\lim\_n f\_n(x)) = \\lim\_n f\_n\'(x)\$\$ を得る。
-
+$
+dv(, x)(lim_n f_n (x)) = lim_n f_n' (x)
+$
+を得る。
 ]
+
 == 微分と積分の順序交換
-<微分と積分の順序交換>
+
 微分は極限で定義されるので、極限と積分の交換の内容をもとに微分と積分の交換を示すことができる。
 
-#block[
+#theorem([極限と微分の交換])[
 $X$を面積確定集合、$Y$を開区間とする。
 $X times Y$上定義された二変数関数$f(x, y)$が各$y in Y$に対して$x in X$で積分可能で各$x in X$に対して$y in Y$について$C^1$級で$y -> b$で$f_y (x, y)$は$f_y (x, b)$に一様収束するとする。
 このとき、$f_y (x, b)$も$x in X$で積分可能で
-\$\$int\_X f\_y(x, b)\\dd{y} = \\eval{\\dv{y}int\_X f(x, y)\\dd{x}}\_{y = b}\$\$
+$
+integral_X f_y (x, b) dd(x) = eval(dv(, y)(integral_X f(x, y) dd(x)))_(y = b)
+$
 が成り立つ。
-
 ]
-#block[
+
+#proof[
 微分の定義より
-\$\$\\eval{\\dv{y}int\_X f(x, y)\\dd{x}}\_{y = b}
-= \\lim\_{h -> 0}\\frac{int\_X f(x, b+h)\\dd{x}-int\_X f(x, b)\\dd{x}}{h}
-= \\lim\_{h -> 0}int\_X \\frac{1}{h}(f(x, b+h)-f(x, b))\\dd{x}\$\$
+$
+eval(dv(, y)(integral_X f(x, y) dd(x)))_(y = b)
+= lim_(h -> 0) (integral_X f(x, b+h) dd(x)-integral_X f(x, b) dd(x))/h
+= lim_(h -> 0) integral_X (1/h) (f(x, b+h)-f(x, b)) dd(x)
+$
 なので、$h -> 0$で$1/h (f(x, b+h)-f(x, b))$が$f_y (x, b)$に一様収束することを示せばよい。
 $f(x, y)$は$y$について$C^1$級であることから、微分積分学の基本定理より
-$ 1/h (f(x, b+h)-f(x, b)) = 1/h integral_0^h f_y (x, b+r) ⅆ r $
+$
+1/h (f(x, b+h)-f(x, b)) = 1/h integral_0^h f_y (x, b+r) dd(r)
+$
 なので、
-\$\$sup_(x in X}abs(\\frac{1}{h}int\_0^h f\_y(x, b+r)\\dd{r}-f\_y(x, b)}
-<= \\frac{1}{h}int\_0^h sup_(x in X}abs(f\_y(x, b+r)-f\_y(x, b)}\\dd{r}.\$\$
+$
+abs(1/h integral_0^h f_y (x, b+r) dd(r)-f_y (x, b))
+<= 1/h integral_0^h abs(f_y (x, b+r)-f_y (x, b)) dd(r)
+$
 ここで$f_y (x, y)$が一様収束するという仮定より連続性の度合い$omega$が存在して、これは単調増加であることに注意すると$h -> 0$で
-\$\$sup_(x in X}abs(\\frac{1}{h}int\_0^h f\_y(x, b+r)\\dd{r}-f\_y(x, b)}
-<= \\frac{1}{h}int\_0^h \\omega(r)\\dd{r}
-<= \\frac{1}{h}int\_0^h \\omega(h)\\dd{r}
-= \\omega(h)
--> 0.\$\$
-よって$1/h (f(x, b+h)-f(x, b))$は$f_y (x, b)$に一様収束し、定理が証明される。
-
+$
+sup_(x in X) abs(1/h integral_0^h f_y (x, b+r) dd(r)-f_y (x, b))
+<= 1/h integral_0^h omega(r) dd(r)
+<= 1/h integral_0^h omega(h) dd(r)
+= omega(h)
+-> 0
+$
+よって$1/h (f(x, b+h)-f(x, b))$は$f_y (x, b)$に一様収束し、
+定理が証明される。
 ]
