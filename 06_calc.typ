@@ -78,8 +78,8 @@ $
 $
 vol(B_(N+2) (a))
 = c_(N+2) a^(N+2)
-= integral_(D(a)) area(B_N (sqrt(a^2-x^2-y^2))) dd((x, y))
-= integral_(D(a)) c_N sqrt(a^2-x^2-y^2)^N dd((x, y))
+= integral.double_(D(a)) area(B_N (sqrt(a^2-x^2-y^2))) dd((x, y))
+= integral.double_(D(a)) c_N sqrt(a^2-x^2-y^2)^N dd((x, y))
 $
 となり、極座標変換$x = a r cos theta, y = a r sin theta$により
 $

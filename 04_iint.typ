@@ -275,7 +275,7 @@ $
 が成り立つ。
 特に各積分が収束するならば$N$変数関数$f(x_1, dots, x_N)$について
 $
-integral_([a_1, b_1] times dots times [a_N, b_N]) f(x_1, dots, x_N) dd((x_1, dots, x_N))
+integral dots integral_([a_1, b_1] times dots times [a_N, b_N]) f(x_1, dots, x_N) dd((x_1, dots, x_N))
 = integral_(a_1)^(b_1) dots integral_(a_N)^(b_N) f(x_1, dots, x_N) dd(x_N) dots dd(x_1)
 $
 が成り立つ。
