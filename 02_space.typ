@@ -275,7 +275,7 @@ d((a_1, dots, a_N), (x_1, dots, x_N)) = sqrt((x_1-a_1)^2+dots+(x_N-a_N)^2)
 $
 で与えられることから以下のようにして定義される。
 
-#block[
+#definition([多変数関数の極限])[
 $f$を$RR^N$の部分集合$X$上で定義された$N$変数実数値関数、$(a_1, dots, a_N)$を$X$の極限点、$l$を実数とする。
 
 $N$変数関数$f(x_1, dots, x_N)$が$(x_1, dots, x_N) -> (a_1, dots, a_N)$で実数$l$に_収束する_あるいは$l$が$f(x_1, dots, x_N)$の$(x_1, dots, x_N) -> (a_1, dots, a_N)$での_極限である_とは
