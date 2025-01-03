@@ -1,4 +1,9 @@
 
+#import "deps/theorem.typ": thmrules, theorem, lemma, proposition, corollary, definition, example, remark, proof
+#show: thmrules.with()
+
+#import "@preview/physica:0.9.4": dd
+
 = 積分の極限
 
 == 一様収束とディニの補題
@@ -49,13 +54,13 @@ $
 $
 lim_(epsilon -> 0) integral_a^b f(x, x/epsilon) dd(x)
 = lim_(n -> oo) integral_a^b f(x, n x) dd(x)
-= integral_a^b (1/L) integral_0^L f(x, y) dd(y) dd(x)
+= integral_a^b 1/L integral_0^L f(x, y) dd(y) dd(x)
 $
 が成り立つ。
 特に連続関数$f(x)g(y)$に対しては
 $
 lim_(epsilon -> 0) integral_a^b f(x)g(x/epsilon) dd(x)
-= lim_(n -> oo) integral_a^b f(x)g(nx) dd(x)
+= lim_(n -> oo) integral_a^b f(x)g(n x) dd(x)
 = integral_a^b f(x) dd(x) 1/L integral_0^L g(y) dd(y)
 $
 が成り立つ。
@@ -144,12 +149,12 @@ $
 であり、$f$は有界閉矩形上の連続関数より一様連続で連続性の度合い$omega$があるので、
 $
 &abs(1/n sum_(k = [a n]+1)^([b n]) f((k-1+y)/n, y)-sum_(k = [a n]+1)^([b n]) integral_((k-1)/n)^(k/n) f(x, y) dd(x)) \
-&<= sum_(k = [a n]+1)^([b n]) abs(1/n f((k-1+y)/n, y)-integral_((k-1)/n)^(k/n) f(x, y) dd(x))
-<= sum_(k = [a n]+1)^([b n]) integral_((k-1)/n)^(k/n) abs(f(x, y)-f((k-1+y)/n, y)) dd(x)
-&<= sum_(k = [a n]+1)^([b n]) integral_((k-1)/n)^(k/n) omega(abs(x-(k-1+y)/n)) dd(x)
+&quad <= sum_(k = [a n]+1)^([b n]) abs(1/n f((k-1+y)/n, y)-integral_((k-1)/n)^(k/n) f(x, y) dd(x))
+<= sum_(k = [a n]+1)^([b n]) integral_((k-1)/n)^(k/n) abs(f(x, y)-f((k-1+y)/n, y)) dd(x) \
+&quad <= sum_(k = [a n]+1)^([b n]) integral_((k-1)/n)^(k/n) omega(abs(x-(k-1+y)/n)) dd(x)
 <= sum_(k = [a n]+1)^([b n]) integral_((k-1)/n)^(k/n) omega(n^(-1)) dd(x)
 <= ([b n]-[a n])/n omega(n^(-1)) \
-&<= (b-a) omega(n^(-1))
+&quad <= (b-a) omega(n^(-1))
 -> 0
 $
 ここから一様収束が言えるので、以上の内容をまとめると

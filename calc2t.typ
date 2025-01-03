@@ -33,9 +33,6 @@
 #include "04_iint.typ"
 #include "05_fseq.typ"
 #include "06_calc.typ"
-// #include "07_integral.typ"
-// #include "08_series.typ"
-// #include "09_functions2.typ"
-// #include "10_equidist.typ"
+#include "07_limint.typ"
 
 #bibliography("99_ref.yml")
