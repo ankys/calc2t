@@ -1,7 +1,25 @@
 
-r_n24:
+r_n24a:
   type: Web
   author: 中安淳
   title: 微分積分学１
   url: https://github.com/ankys/calc1t/releases/download/20241222/calc1t-20241222.pdf
   date: 2024
+r_n24b:
+  type: Web
+  author: 中安淳
+  title: 線形代数学１
+  url: https://github.com/ankys/lina1t/releases/download/20241230/lina1t-20241230.pdf
+  date: 2024
+r_o08:
+  type: Web
+  author: 小澤徹
+  title: 非有界区間に於ける広義リーマン積分の条件収束
+  url: http://www.ozawa.phys.waseda.ac.jp/
+  date: 2008年12月
+r_y19:
+  type: Web
+  author: 吉田伸生
+  title: ちょっとマニアックな（？）級数・積分の計算
+  url: http://www.math.nagoya-u.ac.jp/~noby/pdf/mania.pdf
+  date: 2019年6月24日
