@@ -572,6 +572,37 @@ $
 である。
 ]
 
+この定理は証明を見ても大したことをしていないように見えるが、実際には重積分を境界
+$
+partial D = { (x, y) mid(|) x in A, y = a(x) } union { (x, y) mid(|) x in A, y = b(x) } union { (x, y) mid(|) x in partial A, a(x) <= y <= b(x) }
+$
+での積分に帰着させるとても重要な定理である。
+実際、$a(x), b(x)$が$C^1$級の時には$n_y$を$partial D$のいわゆる外向き単位法線ベクトル$n$の$y$成分として定理の右辺は
+$
+integral_(partial D) f(x, y) n_y (x, y) dd(S(x, y))
+$
+と書くことができる。
+ただし、$dd(S)$はいわゆる面積要素である。
+定理の設定においては$y = b(x)$上では$n = 1/sqrt(1+abs(gradient b(x))^2) vec(-gradient b(x), 1)$, $dd(S(x, y)) = sqrt(1+abs(gradient b(x))^2) dd(x)$、$y = a(x)$上では$n = 1/sqrt(1+abs(gradient a(x))^2) vec(gradient a(x), -1)$, $dd(S(x, y)) = sqrt(1+abs(gradient a(x))^2) dd(x)$、$x in partial A$上では$n_y = 0$なので、
+$
+integral_(partial D) f(x, y) n_y (x, y) dd(S(x, y))
+= integral_A (f(x, b(x))-f(x, a(x))) dd(x)
+$
+となる。
+定理を何回も使うことで$D$の形状を一般化することができ、明確に定義されていない記号もあるが次の定理が成り立つことが知られている。
+
+#theorem([ガウス・グリーンの定理])[
+$D$を有界開集合の閉包として境界$partial D$は$C^1$級で$f(x) = f(x_1, dots, x_N)$を$D$を含む開集合上の$C^1$級関数とする。
+このとき各$i = 1, dots, N$に対して
+$
+integral_D f_(x_i) (x) dd(x)
+= integral_(partial D) f(x) n_i (x) dd(S(x))
+$
+が成り立つ。
+]
+
+この定理と発散定理などの関連する定理はベクトル解析のところで詳しく説明する。
+
 == 変数変換の公式
 
 #theorem([重積分の変数変換])[
