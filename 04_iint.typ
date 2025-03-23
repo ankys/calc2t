@@ -538,71 +538,6 @@ $
 球の体積について詳しくは次章で述べる。
 ]
 
-== 多変数の微分積分学の基本定理
-
-一変数の微分積分学の基本定理は微分と積分が逆の操作であるという内容で、不定積分は原始関数であるつまり積分の微分は元の関数になるという主張
-$
-(integral_a^x f(t) dd(t))' = f(x)
-$
-と定積分は原始関数を使って計算されるつまり微分の積分が元の関数で計算されるという主張
-$
-integral_a^b f'(x) dd(x) = f(b)-f(a)
-$
-からなる。
-ここで紹介する多変数の微分積分学の基本定理は微分の積分が元の関数で計算されるという主張の拡張である。
-多変数関数$f$の変数のうち一つを$y$としてその他をまとめて$x$とすると、偏微分$f_y$の重積分は以下のように計算される。
-
-#theorem([多変数の微分積分学の基本定理])[
-$f(x, y)$を縦線集合$D = { (x, y) mid(|) x in A, a(x) <= y <= b(x) }$を含む開集合上の$C^1$級関数であり、$A$は面積確定有界閉集合で$a(x), b(x)$は$A$上の連続関数とする。
-このとき
-$
-integral.double_D f_y (x, y) dd((x, y))
-= integral_A (f(x, b(x))-f(x, a(x))) dd(x)
-$
-が成り立つ。
-]
-
-#proof[
-重積分を累次積分にして$y$での積分を一変数の微分積分学の基本定理で計算すると
-$
-integral.double_D f_y (x, y) dd((x, y))
-= integral_A integral_(a(x))^(b(x)) f_y (x, y) dd(y) dd(x)
-= integral_A (f(x, b(x))-f(x, a(x))) dd(x)
-$
-である。
-]
-
-この定理は証明を見ても大したことをしていないように見えるが、実際には重積分を境界
-$
-partial D = { (x, y) mid(|) x in A, y = a(x) } union { (x, y) mid(|) x in A, y = b(x) } union { (x, y) mid(|) x in partial A, a(x) <= y <= b(x) }
-$
-での積分に帰着させるとても重要な定理である。
-実際、$a(x), b(x)$が$C^1$級の時には$n_y$を$partial D$のいわゆる外向き単位法線ベクトル$n$の$y$成分として定理の右辺は
-$
-integral_(partial D) f(x, y) n_y (x, y) dd(S(x, y))
-$
-と書くことができる。
-ただし、$dd(S)$はいわゆる面積要素である。
-定理の設定においては$y = b(x)$上では$n = 1/sqrt(1+abs(gradient b(x))^2) vec(-gradient b(x), 1)$, $dd(S(x, y)) = sqrt(1+abs(gradient b(x))^2) dd(x)$、$y = a(x)$上では$n = 1/sqrt(1+abs(gradient a(x))^2) vec(gradient a(x), -1)$, $dd(S(x, y)) = sqrt(1+abs(gradient a(x))^2) dd(x)$、$x in partial A$上では$n_y = 0$なので、
-$
-integral_(partial D) f(x, y) n_y (x, y) dd(S(x, y))
-= integral_A (f(x, b(x))-f(x, a(x))) dd(x)
-$
-となる。
-定理を何回も使うことで$D$の形状を一般化することができ、明確に定義されていない記号もあるが次の定理が成り立つことが知られている。
-
-#theorem([ガウス・グリーンの定理])[
-$D$を有界開集合の閉包として境界$partial D$は$C^1$級で$f(x) = f(x_1, dots, x_N)$を$D$を含む開集合上の$C^1$級関数とする。
-このとき各$i = 1, dots, N$に対して
-$
-integral_D f_(x_i) (x) dd(x)
-= integral_(partial D) f(x) n_i (x) dd(S(x))
-$
-が成り立つ。
-]
-
-この定理と発散定理などの関連する定理はベクトル解析のところで詳しく説明する。
-
 == 変数変換の公式
 
 #theorem([重積分の変数変換])[
@@ -714,6 +649,107 @@ $
 なので、
 $n -> oo$とすると$h -> 0$であり$omega (h) -> 0$より等式@e_cvcpt が得られる。
 ]
+
+== 多変数の微分積分学の基本定理
+
+一変数の微分積分学の基本定理は微分と積分が逆の操作であるという内容で、不定積分は原始関数であるつまり積分の微分は元の関数になるという主張
+$
+(integral_a^x f(t) dd(t))' = f(x)
+$
+と定積分は原始関数を使って計算されるつまり微分の積分が元の関数で計算されるという主張
+$
+integral_a^b f'(x) dd(x) = f(b)-f(a)
+$
+からなる。
+ここで紹介する多変数の微分積分学の基本定理は微分の積分が元の関数で計算されるという主張の拡張である。
+多変数関数$f$の変数のうち一つを$y$としてその他をまとめて$x$とすると、偏微分$f_y$の重積分は以下のように計算される。
+
+#theorem([多変数の微分積分学の基本定理１])[
+$f(x, y)$を縦線集合$D = { (x, y) mid(|) x in A, a(x) <= y <= b(x) }$を含む開集合上の$C^1$級関数であり、$A$は面積確定有界閉集合で$a(x), b(x)$は$A$上の連続関数とする。
+このとき
+$
+integral.double_D f_y (x, y) dd((x, y))
+= integral_A (f(x, b(x))-f(x, a(x))) dd(x)
+$
+が成り立つ。
+]
+
+#proof[
+重積分を累次積分にして$y$での積分を一変数の微分積分学の基本定理で計算すると
+$
+integral.double_D f_y (x, y) dd((x, y))
+= integral_A integral_(a(x))^(b(x)) f_y (x, y) dd(y) dd(x)
+= integral_A (f(x, b(x))-f(x, a(x))) dd(x)
+$
+である。
+]
+
+この定理は証明を見ても大したことをしていないように見えるが、実際には重積分を境界
+$
+partial D = { (x, y) mid(|) x in A, y = a(x) } union { (x, y) mid(|) x in A, y = b(x) } union { (x, y) mid(|) x in partial A, a(x) <= y <= b(x) }
+$
+での積分に帰着させるとても重要な定理である。
+実際、$a(x), b(x)$が$C^1$級の時には$n_y$を$partial D$のいわゆる外向き単位法線ベクトル$n$の$y$成分として定理の右辺は
+$
+integral_(partial D) f(x, y) n_y (x, y) dd(S(x, y))
+$
+と書くことができる。
+ただし、$dd(S)$はいわゆる面積要素である。
+定理の設定においては$y = b(x)$上では$n = 1/sqrt(1+abs(gradient b(x))^2) vec(-gradient b(x), 1)$, $dd(S(x, y)) = sqrt(1+abs(gradient b(x))^2) dd(x)$、$y = a(x)$上では$n = 1/sqrt(1+abs(gradient a(x))^2) vec(gradient a(x), -1)$, $dd(S(x, y)) = sqrt(1+abs(gradient a(x))^2) dd(x)$、$x in partial A$上では$n_y = 0$なので、
+$
+integral_(partial D) f(x, y) n_y (x, y) dd(S(x, y))
+= integral_A (f(x, b(x))-f(x, a(x))) dd(x)
+$
+となる。
+
+上記の定理は$f$の偏微分を取る方向$y$と境界$y = a(x), b(x)$が解かれる方向$y$が一致している場合であるが、
+一致しない場合は次のようになる。
+
+#theorem([多変数の微分積分学の基本定理２])[
+$f(x, y, z)$を縦線集合$D = { (x, y, z) mid(|) x in A, a <= y <= b, c(x, y) <= z <= c(x, y)+d }$を含む開集合上の$C^1$級関数であり、$A$は面積確定有界閉集合、$a, b, d$は定数で$c(x, y)$は$A times [a, b]$上の連続関数とする。
+このとき
+$
+&integral.triple_D f_y (x, y, z) dd((x, y, z)) \
+&= integral_A integral_0^d [f(x, b, c(x, b)+t)-f(x, a, c(x, a)+t)] dd(t)dd(x)-integral_A integral_a^b [f(x, y, c(x, y)+d)-f(x, y, c(x, y))]c_y (x, y) dd(y)dd(x)
+$
+が成り立つ。
+]
+
+#proof[
+$z = c(x, y)+t$と置換することで、
+$
+integral.triple_D f_y (x, y, z) dd((x, y, z))
+= integral_A integral_a^b integral_(c(x, y))^(c(x, y)+d) f_y (x, y, z) dd(z)dd(y)dd(x)
+= integral_A integral_a^b integral_0^d f_y (x, y, c(x, y)+t) dd(t)dd(y)dd(x)
+$
+である。
+ここで、合成関数の微分法より
+$
+(f(x, y, c(x, y)+t))_y
+&= f_y (x, y, c(x, y)+t)+f_z (x, y, c(x, y)+t) c_y (x, y) \
+&= f_y (x, y, c(x, y)+t)+(f(x, y, c(x, y)+t) c_y (x, y))_t
+$
+なので、
+$
+integral.triple_D f_y (x, y, z) dd((x, y, z))
+= integral_A integral_a^b integral_0^d [(f(x, y, c(x, y)+t))_y-(f(x, y, c(x, y)+t) c_y (x, y))_t] dd(t)dd(y)dd(x)
+$
+となり、右辺を計算すれば証明が完了する。
+]
+
+この定理においても複雑な右辺は境界での積分として解釈でき、二つの定理をより洗練された形でまとめると、明確に定義されていない記号もあるが、次の定理が成り立つことが知られている。
+
+#theorem([ガウス・グリーンの定理])[
+$D$を有界開集合の閉包として境界$partial D$は$C^1$級で$f(x) = f(x_1, dots, x_N)$を$D$を含む開集合上の$C^1$級関数とする。
+このとき各$i = 1, dots, N$に対して
+$
+integral_D f_(x_i) (x) dd(x)
+= integral_(partial D) f(x) n_i (x) dd(S(x))
+$
+が成り立つ。
+]
+
+このガウス・グリーンの定理とガウスの発散定理などの関連する定理はベクトル解析のテキストで詳しく説明する。
 
 == 広義重積分
 
